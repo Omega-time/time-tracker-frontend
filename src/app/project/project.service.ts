@@ -43,12 +43,25 @@ export class ProjectService {
     }
 
     /**
+     * Deletes a single project object by a given id.
+     * Deletes the tasks of the project as well.
+     * @param id the id by which it deletes the project and its tasks
+     * @returns {Promise<Object>} a promise which holds an anonymous object
+     *                            which holds a response.
+     */
+    deleteProjectById(id: number): Promise<Object> {
+        return this.http.delete(this.serviceUrl + `/${id}`)
+            .map(response => response.json())
+            .toPromise();
+    }
+
+    /**
      * Stores a project in the business layer.
      * @param project the project to be stored
      * @returns {Promise<Object>} a promise which holds an anonymous object
      *                            which holds the new project id
      */
-    saveProject(project:Project): Promise<Object> {
+    saveProject(project: Project): Promise<Object> {
         return this.http.post(this.serviceUrl, project)
             .map(response => response.json())
             .toPromise();
