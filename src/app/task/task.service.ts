@@ -46,7 +46,7 @@ export class TaskService {
      * Deletes a single task object by a given id.
      * @param id the id by which it deletes the task
      * @returns {Promise<Object>} a promise which holds an anonymous object
-     * which holds a response.
+     *                            which holds a response.
      */
     deleteTaskById(id: number): Promise<Object> {
         return this.http.delete(this.serviceUrl + `/${id}`)
