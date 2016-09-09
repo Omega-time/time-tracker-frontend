@@ -18,7 +18,7 @@ export class TaskService {
     }
 
     /**
-     * Retrieves all tasks for a given task from the business layer.
+     * Retrieves all tasks for a given project from the business layer.
      * @returns {Task<Task[]>} a promise which holds an array of Tasks objects
      */
     getAllTasksByProjectId(projectId: number): Promise<Task[]> {
