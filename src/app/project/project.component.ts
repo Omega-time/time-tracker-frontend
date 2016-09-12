@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 import {Project} from "./project";
 import {TaskListComponent} from "../task/task-list.component";
-import {ROUTER_DIRECTIVES , Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 /**
  * Represents a component which renders a single Project.
@@ -14,11 +14,11 @@ import {ROUTER_DIRECTIVES , Router} from "@angular/router";
     moduleId: module.id,
     selector: 'project',
     templateUrl: 'project.component.html',
-    directives: [TaskListComponent, ROUTER_DIRECTIVES]
+    directives: [TaskListComponent]
 })
 export class ProjectComponent {
     projectId: number;
-    constructor(private router: Router){
+    constructor(private router: Router) {
 
     }
     @Input() project: Project;
@@ -26,7 +26,7 @@ export class ProjectComponent {
     ngOnInit() {
 
     }
-    goToTaskList(){
+    goToTaskList() {
         this.router.navigate(['/project', this.project.id]);
     }
 }
