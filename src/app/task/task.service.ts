@@ -22,7 +22,7 @@ export class TaskService {
      * @returns {Task<Task[]>} a promise which holds an array of Tasks objects
      */
     getAllTasksByProjectId(projectId: number): Promise<Task[]> {
-        return this.http.get(this.serviceUrl)
+        return this.http.get(this.serviceUrl + `/${projectId}`)
             .map(response => response.json())
             .map(tasks => tasks.map(
                 task => Task.parseInputObjectToTask(task)
@@ -60,8 +60,8 @@ export class TaskService {
      * @returns {Promise<Object>} a promise which holds an anonymous object
      *                            which holds the new task id
      */
-    saveTask(task: Task): Promise<Object> {
-        return this.http.post(this.serviceUrl, task)
+    saveTask(task: Task, id: number): Promise<Object> {
+        return this.http.post(this.serviceUrl + `/${id}`, task)
             .map(response => response.json())
             .toPromise();
     }
