@@ -1,7 +1,6 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, EventEmitter, Output, Input} from "@angular/core";
 import {Task} from "./task";
-//import {TaskService} from "./task.service";
-import {Router} from "@angular/router";
+import {TaskService} from "./task.service";
 
 /**
  * Represents a form which sends a new task to
@@ -12,23 +11,27 @@ import {Router} from "@angular/router";
 @Component({
     moduleId: module.id,
     selector: 'task-form',
-    templateUrl: 'task-form.component.html'
-    // providers: [TaskService]
-})
-export class TaskFormComponent implements OnInit{
-    taskToBeCreated: Task;
+    templateUrl: 'task-form.component.html',
+    providers: [TaskService],
 
-    constructor(/*private taskService: TaskService,*/ private router: Router) {
+})
+
+export class TaskFormComponent implements OnInit {
+    taskToBeCreated: Task;
+    @Input() projectId: number;
+    @Output() newTaskAdded = new EventEmitter<boolean>();
+
+    constructor(private taskService: TaskService) {
     }
 
     /**
      * Implemented method from {@link OnInit} interface which
      * is called after the constructor of the class. Here
      * we instantiate the taskToBeCreated with an empty
-     * Task object.
+     * Task object through the {@link formReset}.
      */
     ngOnInit() {
-        this.taskToBeCreated = Task.createEmptyTask();
+        this.formReset();
     }
 
     /**
@@ -37,7 +40,18 @@ export class TaskFormComponent implements OnInit{
      * the taskToBeCreated object.
      */
     addTask() {
-        // this.taskService.saveTask(this.taskToBeCreated)
-        //     .then(newTaskId => this.router.navigateByUrl("/projects"));
+        this.taskService.saveTask(this.taskToBeCreated, this.projectId)
+            .then(resp => {
+                this.newTaskAdded.emit(true);
+                this.formReset();
+            })
+            .catch(err => console.log(err));
+    }
+
+    /**
+     * Resets the Add Task form by giving taskToBeCreated an empty Task object. 
+     */
+    formReset() {
+        this.taskToBeCreated = Task.createEmptyTask();
     }
 }

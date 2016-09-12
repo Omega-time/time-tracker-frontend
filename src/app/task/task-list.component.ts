@@ -1,7 +1,9 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Input} from "@angular/core";
 import {Task} from "./task";
-//import {TaskService} from "./task.service";
+import {TaskService} from "./task.service";
 import {TaskComponent} from "./task.component";
+import {TaskFormComponent} from "./task-form.component";
+import {Router, ActivatedRoute } from "@angular/router";
 
 /**
  * Renders a list of tasks provided from {@link TaskService}.
@@ -12,13 +14,16 @@ import {TaskComponent} from "./task.component";
     moduleId: module.id,
     selector: 'task-list',
     templateUrl: 'task-list.component.html',
-    directives: [TaskComponent],
-    // providers: [TaskService]
+    directives: [TaskComponent , TaskFormComponent],
+    providers: [TaskService]
 })
-export class TaskListComponent implements OnInit{
+export class TaskListComponent implements OnInit {
     tasks: Task[];
+    projectId: number;
 
-    constructor(/*private taskService: TaskService,*/) {
+    constructor(private route: ActivatedRoute,
+                private router: Router,
+                private taskService: TaskService) {
     }
 
     /**
@@ -27,6 +32,19 @@ export class TaskListComponent implements OnInit{
      * provided service to load all tasks.
      */
     ngOnInit() {
-        // should call TaskService.getAllTasks() and set them in the tasks variable;
+        this.getProjectTasks();
+    }
+
+    /**
+     * Gets all tasks for the current project.
+     */
+    getProjectTasks() {
+         this.route.params.subscribe(params => {
+            let id = +params['id']; // (+) converts string 'id' to a number
+            this.projectId = id;
+            this.taskService.getAllTasksByProjectId(id)
+                .then(tasks => this.tasks = tasks)
+                .catch(err => console.error(err));
+        });
     }
 }

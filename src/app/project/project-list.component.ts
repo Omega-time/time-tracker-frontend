@@ -15,7 +15,7 @@ import {ProjectComponent} from "./project.component";
     directives: [ProjectComponent],
     providers: [ProjectService]
 })
-export class ProjectListComponent implements OnInit{
+export class ProjectListComponent implements OnInit {
     projects: Project[];
 
     constructor(private projectService: ProjectService) {
@@ -29,6 +29,6 @@ export class ProjectListComponent implements OnInit{
     ngOnInit() {
         this.projectService.getAllProjects()
             .then(projects => this.projects = projects)
-            .catch(err=>console.error(err));
+            .catch(err => console.error(err));
     }
 }
