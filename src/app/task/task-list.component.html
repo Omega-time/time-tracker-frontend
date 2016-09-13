@@ -1,6 +1,11 @@
-<ol>
-    <li *ngFor="let task of tasks">
-        <task [task]="task"></task>
-    </li>
-</ol>
-<task-form [projectId]="projectId" (newTaskAdded)="getProjectTasks()"></task-form>
+<div id="left-input">
+    <task-form [projectId]="projectId" (newTaskAdded)="getProjectTasks()"></task-form>
+</div>
+
+<div id="right-output">
+    <ul class="list-group">
+        <li *ngFor="let task of tasks" class="list-group-item">
+            <task [task]="task"></task>
+        </li>
+    </ul>
+</div>

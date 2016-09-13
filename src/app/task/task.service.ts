@@ -12,7 +12,7 @@ import 'rxjs/Rx';
  */
 @Injectable()
 export class TaskService {
-    private serviceUrl = '/tasks';
+    private serviceUrl = 'http://localhost:8080/tasks';
 
     constructor(private http: Http) {
     }

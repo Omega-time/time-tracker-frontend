@@ -1,6 +1,29 @@
-<form #newTask="ngForm">
-    <input type="text" name="name" [(ngModel)]="taskToBeCreated.name" placeholder="Enter task name">
-    <input type="text" name="duration" [(ngModel)]="taskToBeCreated.duration" placeholder="Enter task duration">
-    <input type="text" name="comment" [(ngModel)]="taskToBeCreated.comment" placeholder="Enter task comment">
-    <input type="button" (click)="addTask()" value="Add task">
-</form>
+<div id="taskFrom">
+    <form #newTask="ngForm" class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <label for="inputName" class="col-lg-2 control-label">Task Name</label>
+                <div class="col-lg-4">
+                    <input type="text" id="inputName" name="name" [(ngModel)]="taskToBeCreated.name" placeholder="Enter task name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDuration" class="col-lg-2 control-label">Task Duration</label>
+                <div class="col-lg-4">
+                    <input type="text" id="inputDuration" name="duration" [(ngModel)]="taskToBeCreated.duration" placeholder="Enter task duration"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="commentArea" class="col-lg-2 control-label">Comment</label>
+                <div class="col-lg-4">
+                    <input id="commentArea" type="text" name="comment" [(ngModel)]="taskToBeCreated.comment" placeholder="Enter task comment"
+                        class="form-control">
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <input type="button" (click)="addTask()" value="Add task" class="btn btn-primary">
+            </div>
+        </fieldset>
+    </form>
+</div>
