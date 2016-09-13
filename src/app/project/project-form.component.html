@@ -1,4 +1,16 @@
-<form #newProject="ngForm">
-    <input type="text" name="name" [(ngModel)]="projectToBeCreated.name" placeholder="Enter project name">
-    <input type="button" (click)="addProject()" value="Add project">
-</form>
+<div id="project-form">
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <div class="col-lg-4 col-lg-offset-1">
+                    <input type="text" name="name" [(ngModel)]="projectToBeCreated.name" placeholder="Enter project name" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <input type="button" (click)="addProject()" value="Add project" class="btn btn-primary">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
