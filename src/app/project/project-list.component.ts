@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Project} from "./project";
 import {ProjectService} from "./project.service";
-import {ProjectComponent} from "./project.component";
+import {ProjectButtonComponent} from "./project-button.component";
 
 /**
  * Renders a list of projects provided from {@link ProjectService}.
@@ -12,7 +12,7 @@ import {ProjectComponent} from "./project.component";
     moduleId: module.id,
     selector: 'project-list',
     templateUrl: 'project-list.component.html',
-    directives: [ProjectComponent],
+    directives: [ProjectButtonComponent],
     providers: [ProjectService]
 })
 export class ProjectListComponent implements OnInit {

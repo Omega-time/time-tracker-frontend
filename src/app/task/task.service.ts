@@ -12,7 +12,9 @@ import 'rxjs/Rx';
  */
 @Injectable()
 export class TaskService {
-    private serviceUrl = '/tasks';
+    private tasksServiceUrl = 'http://localhost:8080/api/tasks';
+        private taskServiceUrl = 'http://localhost:8080/api/task';
+
 
     constructor(private http: Http) {
     }
@@ -22,7 +24,7 @@ export class TaskService {
      * @returns {Task<Task[]>} a promise which holds an array of Tasks objects
      */
     getAllTasksByProjectId(projectId: number): Promise<Task[]> {
-        return this.http.get(this.serviceUrl + `/${projectId}`)
+        return this.http.get(this.tasksServiceUrl + `/${projectId}`)
             .map(response => response.json())
             .map(tasks => tasks.map(
                 task => Task.parseInputObjectToTask(task)
@@ -36,7 +38,7 @@ export class TaskService {
      * @returns {Promise<Task>} a promise which holds a single task object
      */
     getTaskById(id: number): Promise<Task> {
-        return this.http.get(this.serviceUrl + `/${id}`)
+        return this.http.get(this.taskServiceUrl + `/${id}`)
             .map(response => response.json())
             .map(task => Task.parseInputObjectToTask(task))
             .toPromise();
@@ -49,7 +51,7 @@ export class TaskService {
      *                            which holds a response.
      */
     deleteTaskById(id: number): Promise<Object> {
-        return this.http.delete(this.serviceUrl + `/${id}`)
+        return this.http.delete(this.taskServiceUrl + `/${id}`)
             .map(response => response.json())
             .toPromise();
     }
@@ -61,7 +63,7 @@ export class TaskService {
      *                            which holds the new task id
      */
     saveTask(task: Task, id: number): Promise<Object> {
-        return this.http.post(this.serviceUrl + `/${id}`, task)
+        return this.http.post(this.tasksServiceUrl + `/${id}`, task)
             .map(response => response.json())
             .toPromise();
     }

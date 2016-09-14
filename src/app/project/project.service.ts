@@ -12,7 +12,8 @@ import 'rxjs/Rx';
  */
 @Injectable()
 export class ProjectService {
-    private serviceUrl = '/projects';
+    private projectsServiceUrl = 'http://localhost:8080/api/projects';
+    private projectServiceUrl= 'http://localhost:8080/api/project';
 
     constructor(private http: Http) {
     }
@@ -22,7 +23,7 @@ export class ProjectService {
      * @returns {Promise<Project[]>} a promise which holds an array of Project objects
      */
     getAllProjects(): Promise<Project[]> {
-        return this.http.get(this.serviceUrl)
+        return this.http.get(this.projectsServiceUrl)
             .map(response => response.json())
             .map(projects => projects.map(
                 project => Project.parseInputObjectToProject(project)
@@ -36,7 +37,7 @@ export class ProjectService {
      * @returns {Promise<Project>} a promise which holds a single project object
      */
     getProjectById(id: number): Promise<Project> {
-        return this.http.get(this.serviceUrl + `/${id}`)
+        return this.http.get(this.projectServiceUrl + `/${id}`)
             .map(response => response.json())
             .map(project => Project.parseInputObjectToProject(project))
             .toPromise();
@@ -50,7 +51,7 @@ export class ProjectService {
      *                            which holds a response.
      */
     deleteProjectById(id: number): Promise<Object> {
-        return this.http.delete(this.serviceUrl + `/${id}`)
+        return this.http.delete(this.projectServiceUrl + `/${id}`)
             .map(response => response.json())
             .toPromise();
     }
@@ -62,7 +63,7 @@ export class ProjectService {
      *                            which holds the new project id
      */
     saveProject(project: Project): Promise<Object> {
-        return this.http.post(this.serviceUrl, project)
+        return this.http.post(this.projectsServiceUrl, project)
             .map(response => response.json())
             .toPromise();
     }
