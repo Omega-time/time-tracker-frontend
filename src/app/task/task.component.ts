@@ -44,7 +44,7 @@ export class TaskComponent {
             .then(resp => {
                 this.taskDeleted.emit(true);
             })
-            .catch(error => console.log(error));
+            .catch(error => console.error(error));
     }
 
     /**

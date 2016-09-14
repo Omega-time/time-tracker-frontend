@@ -50,7 +50,7 @@ export class TaskService {
      */
     deleteTaskById(id: number): Promise<Object> {
         return this.http.delete('http://localhost:8080/task' + `/${id}`)
-            .map(response => response)
+            .map(response => response.json())
             .toPromise();
     }
 
