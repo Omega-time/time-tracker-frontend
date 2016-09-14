@@ -2,27 +2,42 @@
     <form #newTask="ngForm" class="form-horizontal">
         <fieldset>
             <div class="form-group">
-                <label for="inputName" class="col-lg-2 control-label">Task Name</label>
-                <div class="col-lg-4">
-                    <input type="text" id="inputName" name="name" [(ngModel)]="taskToBeCreated.name" placeholder="Enter task name" class="form-control">
+                <div class="col-lg-10">
+                    <label for="name" class="control-label">Name</label>
+                    <input type="text" id="inputName" name="name" [(ngModel)]="taskToBeCreated.name" placeholder="Enter name" class="form-control"
+                        required pattern="^.{2,255}$" #name="ngModel">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDuration" class="col-lg-2 control-label">Task Duration</label>
-                <div class="col-lg-4">
-                    <input type="text" id="inputDuration" name="duration" [(ngModel)]="taskToBeCreated.duration" placeholder="Enter task duration"
-                        class="form-control">
+                <div class="col-lg-10">
+                    <label for="inputDuration" class="control-label">Duration</label>
+                    <input required pattern="[0-9]+" type="text" id="inputDuration" name="duration" [(ngModel)]="taskToBeCreated.duration" placeholder="Enter duration"
+                        class="form-control" #duration="ngModel">
                 </div>
             </div>
             <div class="form-group">
-                <label for="commentArea" class="col-lg-2 control-label">Comment</label>
-                <div class="col-lg-4">
-                    <input id="commentArea" type="text" name="comment" [(ngModel)]="taskToBeCreated.comment" placeholder="Enter task comment"
-                        class="form-control">
+                <div class="col-lg-10">
+                    <label for="commentArea" class="control-label">Comment</label>
+                    <textarea id="commentArea" cols=15 rows=2 type="text" name="comment" [(ngModel)]="taskToBeCreated.comment" placeholder="Enter comment"
+                        class="form-control"></textarea>
                 </div>
             </div>
-            <div class="col-lg-10">
-                <input type="button" (click)="addTask()" value="Add task" class="btn btn-primary">
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <div [hidden]="newTask.valid || newTask.pristine" class="alert alert-dismissible alert-danger">
+                        <div [hidden]="name.valid">
+                            <strong>Invalid name.</strong>
+                        </div>
+                        <div [hidden]="duration.valid">
+                            <strong>Invalid duration.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10">
+                    <input type="button" (click)="addTask()" [disabled]="!newTask.valid" value="Add task" class="btn btn-primary">
+                </div>
             </div>
         </fieldset>
     </form>
