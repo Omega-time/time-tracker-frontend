@@ -1,11 +1,16 @@
-<div class="row">
+<div class="bs-docs-section">
     <div class="col-lg-4">
+        <h2>
+            <strong>Create new project</strong>
+        </h2>
         <project-form (newProjectAdded)="getAllProjects()"></project-form>
     </div>
     <div class="col-lg-6">
+        <h2>
+            <strong>Choose your project: </strong>
+        </h2>
         <ul class="list-group">
             <li *ngFor="let project of projects" class="list-group-item">
-                <strong>Project: </strong>
                 <project [project]="project"></project>
             </li>
         </ul>
