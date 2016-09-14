@@ -14,26 +14,31 @@ import {TaskService} from "./task.service";
     selector: 'task',
     templateUrl: 'task.component.html',
     host: {
-        '(document:click)': 'handleClick($event)',
-    },
+        '(document:click)': 'handleClick($event)'
+    }
 })
 export class TaskComponent {
-    public elementRef;
     @Input() task: Task;
     @Output() taskDeleted = new EventEmitter<boolean>();
-
     confirmDelete: boolean;
+    public elementRef;
 
     constructor(private taskService: TaskService,
         private myElement: ElementRef) {
         this.elementRef = myElement;
     }
 
+    /**
+     * Initiates the deletion of a tasks. Displays the confirmation dialog for deletion.
+     */
     onClickDelete(event: any) {
         this.confirmDelete = true;
     }
 
-    delete(taskId: number) {
+    /**
+     * Deletes the task after user confirmation. 
+     */
+    deleteTask(taskId: number) {
         this.taskService
             .deleteTaskById(taskId)
             .then(resp => {
@@ -42,6 +47,10 @@ export class TaskComponent {
             .catch(error => console.log(error));
     }
 
+    /**
+     * Listens for click events in and outside of this component.
+     * We use it to hide the deletion dialog of current task.
+     */
     handleClick(event) {
         var clickedComponent = event.target;
         var inside = false;
@@ -52,7 +61,7 @@ export class TaskComponent {
             clickedComponent = clickedComponent.parentNode;
         } while (clickedComponent);
         if (!inside) {
-           this.confirmDelete = false;
+            this.confirmDelete = false;
         }
     }
 }
