@@ -47,6 +47,9 @@ export class ProjectFormComponent implements OnInit {
             });
     }
 
+    /**
+     * Resets the Create project form by giving projectToBeCreated an empty Project object. 
+     */
     formReset() {
         this.projectToBeCreated = Project.createEmptyProject();
     }

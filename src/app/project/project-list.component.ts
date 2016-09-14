@@ -30,7 +30,10 @@ export class ProjectListComponent implements OnInit {
     ngOnInit() {
         this.getAllProjects();
     }
-    
+
+    /**
+     * Gets all projects for the current user.
+     */
     getAllProjects(){
         this.projectService.getAllProjects()
             .then(projects => this.projects = projects.reverse())
