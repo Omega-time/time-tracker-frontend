@@ -12,7 +12,7 @@ const routes: RouterConfig = [
     {path: '', redirectTo:'/projects', pathMatch: 'full'},
     {path: 'projects', component: ProjectListComponent},
     {path: 'projects/create', component: ProjectFormComponent},
-    {path: 'project/:id', component: TaskListComponent},
+    {path: 'project/:id', component: ProjectComponent},
     {path: '**', component: PageNotFoundComponent}
     ];
 

@@ -1,7 +1,8 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {Project} from "./project";
 import {TaskListComponent} from "../task/task-list.component";
-import {Router} from "@angular/router";
+import {FileListComponent} from "../file/file-list.component"
+import {ActivatedRoute} from "@angular/router";
 
 /**
  * Represents a component which renders a single Project.
@@ -10,23 +11,22 @@ import {Router} from "@angular/router";
  * the Input field project.
  * @class
  */
-@Component({
+@Component ({
     moduleId: module.id,
     selector: 'project',
     templateUrl: 'project.component.html',
-    directives: [TaskListComponent]
+    directives: [TaskListComponent, FileListComponent]
 })
-export class ProjectComponent {
+export class ProjectComponent implements OnInit{
     projectId: number;
-    constructor(private router: Router) {
 
+    constructor(private route: ActivatedRoute) {
     }
-    @Input() project: Project;
 
-    ngOnInit() {
-
-    }
-    goToTaskList() {
-        this.router.navigate(['/project', this.project.id]);
+    ngOnInit(){
+          this.route.params.subscribe(params => {
+            let id = +params['id']; // (+) converts string 'id' to a number
+            this.projectId = id;
+        });
     }
 }

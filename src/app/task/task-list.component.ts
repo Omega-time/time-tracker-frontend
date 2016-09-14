@@ -14,8 +14,8 @@ import {Router, ActivatedRoute } from "@angular/router";
     moduleId: module.id,
     selector: 'task-list',
     templateUrl: 'task-list.component.html',
-    directives: [TaskComponent , TaskFormComponent],
-    providers: [TaskService]
+    providers: [TaskService],
+    directives: [TaskComponent , TaskFormComponent]
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[];
