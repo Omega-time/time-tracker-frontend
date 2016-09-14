@@ -1,13 +1,12 @@
-<div id="left-input">
-    <task-form [projectId]="projectId" (newTaskAdded)="getProjectTasks()"></task-form>
-</div>
-<div id="spacer">
-    &nbsp;
-</div>    
-<div id="right-output">
-    <ul class="list-group">
-        <li *ngFor="let task of tasks" class="list-group-item">
-            <task [task]="task" (taskDeleted)="getProjectTasks()"></task>
-        </li>
-    </ul>
+<div class="row">
+    <div class="col-lg-4">
+        <task-form [projectId]="projectId" (newTaskAdded)="getProjectTasks()"></task-form>
+    </div>
+    <div class="col-lg-4">
+        <ul class="list-group">
+            <li *ngFor="let task of tasks" class="list-group-item">
+                <task [task]="task" (taskDeleted)="getProjectTasks()"></task>
+            </li>
+        </ul>
+    </div>
 </div>
