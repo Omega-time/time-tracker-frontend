@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, Output, EventEmitter} from "@angular/core";
 import {Project} from "./project";
 import {ProjectService} from "./project.service";
 import {Router} from "@angular/router";
@@ -15,11 +15,12 @@ import {Router} from "@angular/router";
     templateUrl: 'project-form.component.html',
     providers: [ProjectService]
 })
-export class ProjectFormComponent implements OnInit{
+export class ProjectFormComponent implements OnInit {
     projectToBeCreated: Project;
+    @Output() newProjectAdded = new EventEmitter<boolean>();
 
     constructor(private projectService: ProjectService,
-                private router: Router) {
+        private router: Router) {
     }
 
     /**
@@ -39,6 +40,14 @@ export class ProjectFormComponent implements OnInit{
      */
     addProject() {
         this.projectService.saveProject(this.projectToBeCreated)
-            .then(newProjectId => this.router.navigateByUrl("/projects"));
+            .then(newProjectId => {
+                this.router.navigateByUrl("/projects");
+                this.newProjectAdded.emit(true);
+                this.formReset();
+            });
+    }
+
+    formReset() {
+        this.projectToBeCreated = Project.createEmptyProject();
     }
 }
