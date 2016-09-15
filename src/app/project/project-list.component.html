@@ -8,12 +8,15 @@
     </div>
     <div class="col-lg-6">
         <h2>
-            <strong>Choose your project: </strong>
+            <strong>Choose your project:</strong>
         </h2>
-        <ul class="list-group">
-            <li *ngFor="let project of projects" class="list-group-item">
-                <project-button [project]="project"></project-button>
-            </li>
-        </ul>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1></h1>
+            </div>
+            <div class="panel-body">
+                <project-button *ngFor="let project of projects" [project]="project"></project-button>
+            </div>
+        </div>
     </div>
 </div>
