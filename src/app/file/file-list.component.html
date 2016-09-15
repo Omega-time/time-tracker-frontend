@@ -1,6 +1,6 @@
 <ol>
     <li *ngFor="let fileName of fileNames">
-        <file [fileName]="fileName" (fileDeleted)="getProjectFileNames()"></file>
+        <file [fileName]="fileName" [projectId]="projectId" (fileDeleted)="getProjectFileNames()"></file>
     </li>
 </ol>
 <file-upload-form [projectId]="projectId"  (newFileAdded)="getProjectFileNames()"></file-upload-form>

@@ -20,7 +20,7 @@ export class FileService {
             .toPromise();
     }
 
-    deleteFileByNameAndProjectId(fileName:String, projectId:number): Promise<Object>{
+    deleteFileByNameAndProjectId(fileName:String, projectId:number): Promise<String>{
         let deleteFileUrl=this.serviceUrl+`/${projectId}`+`/${fileName}`;
         return this.http.delete(deleteFileUrl)
             .map(response => response.json())
