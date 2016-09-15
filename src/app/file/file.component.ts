@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, OnInit} from "@angular/core";
-import {FileService} from "./file.service"
+import {FileService} from "./file.service";
+import {DocFile} from "./docfile";
 
 @Component({
     moduleId: module.id,
@@ -7,7 +8,7 @@ import {FileService} from "./file.service"
     templateUrl: 'file.component.html'
 })
 export class FileComponent implements OnInit {
-    @Input() fileName: String;
+    @Input() docFile: DocFile;
     @Input() projectId: number;
     @Output() fileDeleted = new EventEmitter<boolean>();
     fileUrl: String;
@@ -16,14 +17,14 @@ export class FileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.fileUrl = "http://localhost:8080/api/project/" + this.projectId + "/" + this.fileName;
+        this.fileUrl = "http://localhost:8080/api/project/" + this.projectId + "/" + this.docFile.name;
     }
 
-    onClickDelete(taskId: number, event: any) {
+    onClickDelete(event: any) {
         let deleteFlag: boolean = confirm("Are you sure you want to delete this file?");
         if (deleteFlag == true) {
             this.fileService
-                .deleteFileByNameAndProjectId(this.fileName, this.projectId)
+                .deleteFileByNameAndProjectId(this.docFile.name, this.projectId)
                 .then(resp => (this.fileDeleted.emit(true)))
                 .catch(error => console.log(error));
         }

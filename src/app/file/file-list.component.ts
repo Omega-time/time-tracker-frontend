@@ -14,7 +14,7 @@ import {DocFile} from "./docfile";
     directives: [ FileComponent, FileUploadFormComponent]
 })
 export class FileListComponent implements OnInit {
-    files: DocFile[];
+    docFiles: DocFile[];
     projectId: number;
 
 
@@ -24,16 +24,16 @@ export class FileListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getProjectDocFile();
+        this.getProjectDocFiles();
     }
 
     
-    getProjectDocFile() {
+    getProjectDocFiles() {
          this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.projectId = id;
             this.fileService.getAllFileNamesByProjectId(id)
-                .then(files => this.files = files)
+                .then(docFiles => this.docFiles = docFiles)
                 .catch(err => console.error(err));
         });
     }

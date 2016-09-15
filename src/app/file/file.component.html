@@ -1,4 +1,6 @@
 <a [href]="fileUrl" download>
-    <p>{{fileName}}</p>
+    <p>{{docFile.name}}</p>
 </a>
-<button (click)="onClickDelete(fileName, $event)">X</button>
+<p>{{docFile.size}}kb</p>
+<p>{{docFile.type}}</p>
+<button (click)="onClickDelete($event)">X</button>

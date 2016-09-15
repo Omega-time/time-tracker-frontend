@@ -1,7 +1,13 @@
-<ol>
-    <li *ngFor="let file of files">
-        <file [fileName]="file.name" [projectId]="projectId" (fileDeleted)="getProjectDocFile()"></file>
-    </li>
-</ol>
-<file-upload-form [projectId]="projectId"  (newFileAdded)="getProjectDocFile()"></file-upload-form>
-
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Project Documents</h3>
+    </div>
+    <div class="panel-body">
+        <ol>
+            <li *ngFor="let docFile of docFiles">
+                <file [docFile]="docFile" [projectId]="projectId" (fileDeleted)="getProjectDocFiles()"></file>
+            </li>
+        </ol>
+        <file-upload-form [projectId]="projectId" (newFileAdded)="getProjectDocFiles()"></file-upload-form>
+    </div>
+</div>
