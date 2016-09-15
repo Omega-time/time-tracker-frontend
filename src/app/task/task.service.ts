@@ -15,7 +15,6 @@ export class TaskService {
     private tasksServiceUrl = 'http://localhost:8080/api/tasks';
         private taskServiceUrl = 'http://localhost:8080/api/task';
 
-
     constructor(private http: Http) {
     }
 

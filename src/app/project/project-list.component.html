@@ -1,5 +1,19 @@
-<ol>
-    <li *ngFor="let project of projects">
-        <project-button [project]="project"></project-button>
-    </li>
-</ol>
+<div class="bs-docs-section">
+    <div class="col-lg-4 col-lg-offset-1">
+        <h2>
+            <strong>Create new project</strong>
+            <span class="badge" data-toggle="tooltip" data-placement="top" title="Project name must be between 2 and 90 symbols">?</span>
+        </h2>
+        <project-form (newProjectAdded)="getAllProjects()"></project-form>
+    </div>
+    <div class="col-lg-6">
+        <h2>
+            <strong>Choose your project: </strong>
+        </h2>
+        <ul class="list-group">
+            <li *ngFor="let project of projects" class="list-group-item">
+                <project-button [project]="project"></project-button>
+            </li>
+        </ul>
+    </div>
+</div>

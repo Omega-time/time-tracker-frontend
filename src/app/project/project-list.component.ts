@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Project} from "./project";
 import {ProjectService} from "./project.service";
 import {ProjectButtonComponent} from "./project-button.component";
+import {ProjectFormComponent} from "./project-form.component"
 
 /**
  * Renders a list of projects provided from {@link ProjectService}.
@@ -12,7 +13,7 @@ import {ProjectButtonComponent} from "./project-button.component";
     moduleId: module.id,
     selector: 'project-list',
     templateUrl: 'project-list.component.html',
-    directives: [ProjectButtonComponent],
+    directives: [ProjectButtonComponent, ProjectFormComponent],
     providers: [ProjectService]
 })
 export class ProjectListComponent implements OnInit {
@@ -27,8 +28,15 @@ export class ProjectListComponent implements OnInit {
      * provided service to load all projects.
      */
     ngOnInit() {
+        this.getAllProjects();
+    }
+
+    /**
+     * Gets all projects for the current user.
+     */
+    getAllProjects(){
         this.projectService.getAllProjects()
-            .then(projects => this.projects = projects)
+            .then(projects => this.projects = projects.reverse())
             .catch(err => console.error(err));
     }
 }
