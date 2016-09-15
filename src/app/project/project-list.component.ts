@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Project} from "./project";
 import {ProjectService} from "./project.service";
-import {ProjectComponent} from "./project.component";
+import {ProjectButtonComponent} from "./project-button.component";
 import {ProjectFormComponent} from "./project-form.component"
 
 /**
@@ -13,7 +13,7 @@ import {ProjectFormComponent} from "./project-form.component"
     moduleId: module.id,
     selector: 'project-list',
     templateUrl: 'project-list.component.html',
-    directives: [ProjectComponent, ProjectFormComponent],
+    directives: [ProjectButtonComponent, ProjectFormComponent],
     providers: [ProjectService]
 })
 export class ProjectListComponent implements OnInit {
