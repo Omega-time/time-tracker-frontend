@@ -12,7 +12,7 @@ import 'rxjs/Rx';
  */
 @Injectable()
 export class TaskService {
-    private serviceUrl = '/tasks';
+    private serviceUrl = 'http://localhost:8080/tasks';
 
     constructor(private http: Http) {
     }
@@ -49,7 +49,7 @@ export class TaskService {
      *                            which holds a response.
      */
     deleteTaskById(id: number): Promise<Object> {
-        return this.http.delete(this.serviceUrl + `/${id}`)
+        return this.http.delete('http://localhost:8080/task' + `/${id}`)
             .map(response => response.json())
             .toPromise();
     }

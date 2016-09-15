@@ -1,0 +1,14 @@
+#left-input{
+  width: 30%;
+  float: left;
+}
+
+#right-output{
+  width: 40%;
+  float: left;
+}
+
+#spacer{
+	float: left;
+	width: 2%;
+}
