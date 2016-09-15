@@ -20,6 +20,7 @@ export class TaskFormComponent implements OnInit {
     taskToBeCreated: Task;
     @Input() projectId: number;
     @Output() newTaskAdded = new EventEmitter<boolean>();
+    active = true;
 
     constructor(private taskService: TaskService) {
     }
@@ -53,5 +54,7 @@ export class TaskFormComponent implements OnInit {
      */
     formReset() {
         this.taskToBeCreated = Task.createEmptyTask();
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
 }

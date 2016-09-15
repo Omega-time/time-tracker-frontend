@@ -1,5 +1,5 @@
 <div id="projectForm" class="well">
-    <form #newProject=ngForm class="form-horizontal">
+    <form *ngIf="active" #newProject=ngForm class="form-horizontal">
         <fieldset>
             <div class="form-group">
                 <div class="col-lg-10">

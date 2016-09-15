@@ -17,6 +17,7 @@ import {Router} from "@angular/router";
 })
 export class ProjectFormComponent implements OnInit {
     projectToBeCreated: Project;
+    active = true;
     @Output() newProjectAdded = new EventEmitter<boolean>();
 
     constructor(private projectService: ProjectService,
@@ -52,5 +53,7 @@ export class ProjectFormComponent implements OnInit {
      */
     formReset() {
         this.projectToBeCreated = Project.createEmptyProject();
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
 }
