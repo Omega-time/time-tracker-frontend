@@ -1,2 +1,4 @@
-<p>{{fileName}}</p>
+<a [href]="fileUrl" download>
+    <p>{{fileName}}</p>
+</a>
 <button (click)="onClickDelete(fileName, $event)">X</button>
