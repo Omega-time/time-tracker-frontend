@@ -3,6 +3,7 @@ import {FileService} from "./file.service";
 import{FileComponent} from "./file.component"
 import{FileUploadFormComponent} from "./file-upload-form.component"
 import {Router, ActivatedRoute } from "@angular/router";
+import {DocFile} from "./docfile";
 
 
 @Component({
@@ -13,7 +14,7 @@ import {Router, ActivatedRoute } from "@angular/router";
     directives: [ FileComponent, FileUploadFormComponent]
 })
 export class FileListComponent implements OnInit {
-    fileNames: String[];
+    files: DocFile[];
     projectId: number;
 
 
@@ -23,16 +24,16 @@ export class FileListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getProjectFileNames();
+        this.getProjectDocFile();
     }
 
     
-    getProjectFileNames() {
+    getProjectDocFile() {
          this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.projectId = id;
             this.fileService.getAllFileNamesByProjectId(id)
-                .then(fileNames => this.fileNames = fileNames)
+                .then(files => this.files = files)
                 .catch(err => console.error(err));
         });
     }
