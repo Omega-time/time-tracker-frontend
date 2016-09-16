@@ -19,6 +19,10 @@ import {TaskService} from "./task.service";
 export class TaskFormComponent implements OnInit {
     taskToBeCreated: Task;
     @Input() projectId: number;
+    duration = {
+        hours: 0,
+        minutes: 0
+    }
     @Output() newTaskAdded = new EventEmitter<boolean>();
     active = true;
 
@@ -41,6 +45,7 @@ export class TaskFormComponent implements OnInit {
      * the taskToBeCreated object.
      */
     addTask() {
+        this.taskToBeCreated.setTotalDuration(this.duration);
         this.taskService.saveTask(this.taskToBeCreated, this.projectId)
             .then(resp => {
                 this.newTaskAdded.emit(true);

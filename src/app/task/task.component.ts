@@ -1,6 +1,7 @@
 import {Component, Input, Output, EventEmitter, ElementRef} from "@angular/core";
 import {Task} from "./task";
 import {TaskService} from "./task.service";
+import {DurationPipe} from "./duration.pipe";
 
 /**
  * Represents a component which renders a single Task.
@@ -13,6 +14,7 @@ import {TaskService} from "./task.service";
     moduleId: module.id,
     selector: 'task',
     templateUrl: 'task.component.html',
+    pipes: [DurationPipe],
     host: {
         '(document:click)': 'handleClick($event)'
     }
