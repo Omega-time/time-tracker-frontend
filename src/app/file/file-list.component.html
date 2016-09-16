@@ -3,11 +3,12 @@
         <h3 class="panel-title">Project Documents</h3>
     </div>
     <div class="panel-body">
+        <file-upload-form [projectId]="projectId" (newFileAdded)="getProjectDocFiles()"></file-upload-form>
         <ol>
             <li *ngFor="let docFile of docFiles">
                 <file [docFile]="docFile" [projectId]="projectId" (fileDeleted)="getProjectDocFiles()"></file>
             </li>
         </ol>
-        <file-upload-form [projectId]="projectId" (newFileAdded)="getProjectDocFiles()"></file-upload-form>
+        
     </div>
 </div>

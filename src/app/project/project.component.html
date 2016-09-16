@@ -1,8 +1,11 @@
-<div class="panel-body">
-    <div>
+<div class="bs-docs-selection">
+    <div class="row">
+        <div class="col-lg-offset-1 col-lg-10">
+            <file-list [projectId]="projectId"></file-list>
+        </div>
+    </div>
+    <div class="row">
         <task-list [projectId]="projectId"></task-list>
     </div>
-    <div class="col-lg-4">
-        <file-list [projectId]="projectId"></file-list>
-    </div>
+
 </div>
