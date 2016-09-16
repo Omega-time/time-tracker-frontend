@@ -14,6 +14,12 @@ module.exports = function(defaults) {
       'zone.js/dist/**/*.+(js|js.map)',
       'es6-shim/es6-shim.js',
       'reflect-metadata/**/*.+(ts|js|js.map)',
+      'angular2-oauth2/**',
+      'base64-js/**',
+      'js-base64/**',
+      'sha256/**',
+      'buffer/**',
+      'isarray/index.js',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
       'ng2-file-upload/**/*.+(js|js.map)'
