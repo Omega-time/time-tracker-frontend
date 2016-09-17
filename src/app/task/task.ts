@@ -10,6 +10,16 @@ export class Task {
     }
 
     /**
+     * Gets anonymous object's duration hours and duration minutes,
+     * and sets the totalDuration for object of type Task.
+     * @param obj the anonymous task object
+     * @return {number} total duration
+     */
+    public setTotalDuration(obj) {
+        this.duration = (Number(obj.hours) * 60) + Number(obj.minutes);
+    }
+
+    /**
      * Parses anonymous object to an instance of Task class.
      * Called when parsing JSON string from http request in order
      * to map JS anonymous object to Task.

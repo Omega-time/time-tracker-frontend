@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import { Http } from "@angular/http";
-
+import {DocFile} from "./docfile";
 import 'rxjs/Rx';
 
 @Injectable()
@@ -10,17 +10,17 @@ export class FileService {
     constructor(private http: Http) {
     }
 
-    getAllFileNamesByProjectId(projectId:number): Promise<String[]> {
+    getAllFileNamesByProjectId(projectId:number): Promise<DocFile[]> {
        let getAllFilesUrl=this.serviceUrl+`/${projectId}`+'/files';
         return this.http.get(getAllFilesUrl)
            .map(response => response.json())
-            .map(fileNames => fileNames.map(
-                fileName => fileName
+            .map(files => files.map(
+                docFile => DocFile.parseInputObjectToDocFile(docFile)
             ))
             .toPromise();
     }
 
-    deleteFileByNameAndProjectId(fileName:String, projectId:number): Promise<String>{
+    deleteFileByNameAndProjectId(fileName:String, projectId:number): Promise<DocFile>{
         let deleteFileUrl=this.serviceUrl+`/${projectId}`+`/${fileName}`;
         return this.http.delete(deleteFileUrl)
             .map(response => response.json())

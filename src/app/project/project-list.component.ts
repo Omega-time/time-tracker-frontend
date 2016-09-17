@@ -18,6 +18,7 @@ import {ProjectFormComponent} from "./project-form.component"
 })
 export class ProjectListComponent implements OnInit {
     projects: Project[];
+    collapsed = true;
 
     constructor(private projectService: ProjectService) {
     }
@@ -34,9 +35,13 @@ export class ProjectListComponent implements OnInit {
     /**
      * Gets all projects for the current user.
      */
-    getAllProjects(){
+    getAllProjects() {
         this.projectService.getAllProjects()
             .then(projects => this.projects = projects.reverse())
             .catch(err => console.error(err));
     }
+    collapse() {
+        this.collapsed = !this.collapsed;
+    }
 }
+

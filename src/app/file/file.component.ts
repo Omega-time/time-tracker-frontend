@@ -1,26 +1,55 @@
-import {Component, Input, Output, EventEmitter} from "@angular/core";
-import {FileService} from "./file.service"
+import {Component, Input, Output, EventEmitter, OnInit, ElementRef} from "@angular/core";
+import {FileService} from "./file.service";
+import {DocFile} from "./docfile";
 
 @Component({
     moduleId: module.id,
-    selector: 'file',
-    templateUrl: 'file.component.html'
+    selector: 'tr.special',
+    templateUrl: 'file.component.html',
+        host: {
+        '(document:click)': 'handleClick($event)'
+    }
 })
-export class FileComponent {
-    @Input() fileName: String;
+export class FileComponent implements OnInit {
+    @Input() docFile: DocFile;
     @Input() projectId: number;
     @Output() fileDeleted = new EventEmitter<boolean>();
+    fileUrl: String;
+    confirmDelete = false;
+    public elementRef;
 
-constructor(private fileService:FileService){
-}
-
-    onClickDelete(taskId: number, event: any) {
-    let deleteFlag: boolean = confirm("Are you sure you want to delete this file?");
-    if (deleteFlag == true) {
-      this.fileService
-        .deleteFileByNameAndProjectId(this.fileName, this.projectId)
-        .then(resp => (this.fileDeleted.emit(true)))
-        .catch(error => console.log(error));
+    constructor(private fileService: FileService,
+                private myElement: ElementRef) {
+                    this.elementRef = myElement;
     }
-  }
+
+    ngOnInit() {
+        this.fileUrl = "http://localhost:8080/api/project/" + this.projectId + "/" + this.docFile.name;
+    }
+
+    onClickDelete(event: any) {
+        this.fileService
+            .deleteFileByNameAndProjectId(this.docFile.name, this.projectId)
+            .then(resp => (this.fileDeleted.emit(true)))
+            .catch(error => console.log(error));
+        this.confirmDelete = false;
+
+    }
+    confirmDeletion(event: any) {
+        this.confirmDelete = true;
+    }
+
+    handleClick(event) {
+        var clickedComponent = event.target;
+        var inside = false;
+        do {
+            if (clickedComponent === this.elementRef.nativeElement) {
+                inside = true;
+            }
+            clickedComponent = clickedComponent.parentNode;
+        } while (clickedComponent);
+        if (!inside) {
+            this.confirmDelete = false;
+        }
+    }
 }

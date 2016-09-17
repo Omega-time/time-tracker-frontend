@@ -1,5 +1,5 @@
 <div id="projectForm" class="well">
-    <form #newProject=ngForm class="form-horizontal">
+    <form *ngIf="active" #newProject=ngForm class="form-horizontal">
         <fieldset>
             <div class="form-group">
                 <div class="col-lg-10">
@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <div class="col-lg-10">
-                    <input type="button" [disabled]="!newProject.valid" (click)="addProject()" value="Add project" class="btn btn-primary">
+                    <input type="button" [disabled]="!newProject.valid" (click)="addProject()" value="Add project" class="btn btn-primary waves-effect waves-light">
                 </div>
             </div>
         </fieldset>

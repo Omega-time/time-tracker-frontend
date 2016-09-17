@@ -1,2 +1,3 @@
-<div>Upload file</div>
-<input type="file" value="Upload" ng2FileSelect [uploader]="uploader">
+<input type="file" name="file" id="file" class="inputfile btn btn-primary waves-effect waves-light" ng2FileSelect [uploader]="uploader">
+<label for="file">ИЗБЕРИ ФАЙЛ</label>
+<button class="btn btn-primary waves-effect waves-light" (click)="uploader.uploadItem(fileItem)">Качи</button>
