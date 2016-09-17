@@ -2,7 +2,7 @@ import {Component, OnInit, Input, Output} from "@angular/core";
 import {FileService} from "./file.service";
 import{FileComponent} from "./file.component"
 import{FileUploadFormComponent} from "./file-upload-form.component"
-import {Router, ActivatedRoute } from "@angular/router";
+import {Router, ActivatedRoute,} from "@angular/router";
 import {DocFile} from "./docfile";
 
 
@@ -16,6 +16,7 @@ import {DocFile} from "./docfile";
 export class FileListComponent implements OnInit {
     docFiles: DocFile[];
     projectId: number;
+    collapsed = true;
 
 
     constructor(private route: ActivatedRoute,
@@ -36,5 +37,9 @@ export class FileListComponent implements OnInit {
                 .then(docFiles => this.docFiles = docFiles)
                 .catch(err => console.error(err));
         });
+    }
+
+    collapse() {
+        this.collapsed = !this.collapsed;
     }
 }
