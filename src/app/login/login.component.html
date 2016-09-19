@@ -1,13 +1,15 @@
-<h1 *ngIf="!name">
-    Добър ден!
-</h1>
-<h1 *ngIf="name">
-    Добър ден, {{name}}!
-</h1>
+<div class="wellcomeMessage">
+    <h1 *ngIf="!name">
+        Добър ден!
+    </h1>
+    <h1 *ngIf="name">
+        Добър ден, {{name}}!
+    </h1>
+</div>
 
-<button class="btn btn-primary waves-effect waves-light" (click)="login()">
-    Влез
-</button>
-<button class="btn btn-primary waves-effect waves-light" (click)="logoff()">
-    Излез
-</button>
+
+<div class="centered">
+    <button class="loginBtn" id="loginButton" (click)="login()">
+        Login with Google
+    </button>
+</div>

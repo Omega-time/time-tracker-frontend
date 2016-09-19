@@ -19,7 +19,7 @@ export class AuthService {
         this.oAuthService.loginUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
 
         // URL of the SPA to redirect the user to after login
-        this.oAuthService.redirectUri = window.location.origin + '/';
+        this.oAuthService.redirectUri = 'http://localhost:4200/projects';
 
         // The SPA's id. Register SPA with this id at the auth-server
         this.oAuthService.clientId = '943782333645-mtostmvv8v7vja3dj9nof48dii30st3k.apps.googleusercontent.com';
