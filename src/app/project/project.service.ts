@@ -14,11 +14,9 @@ import {Observable} from "rxjs";
  */
 @Injectable()
 export class ProjectService {
-    private projectServiceUrl= 'http://localhost:8080/api/project';
-	
     private baseUrl = 'http://localhost:8080';
     private projectsServiceUrl = this.baseUrl + '/api/projects';
-	
+
 
     constructor(private http: Http, private authService: AuthService) {
     }
