@@ -16,7 +16,7 @@ import {Observable} from "rxjs";
 export class ProjectService {
     private projectServiceUrl= 'http://localhost:8080/api/project';
 	
-    private baseUrl = '';
+    private baseUrl = 'http://localhost:8080';
     private projectsServiceUrl = this.baseUrl + '/api/projects';
 	
 

@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, Headers } from "@angular/http";
+import {AuthService} from "../auth/auth.service";
 import {Task} from "./task";
 import 'rxjs/Rx';
 
@@ -13,9 +14,15 @@ import 'rxjs/Rx';
 @Injectable()
 export class TaskService {
     private tasksServiceUrl = 'http://localhost:8080/api/tasks';
-        private taskServiceUrl = 'http://localhost:8080/api/task';
+    private taskServiceUrl = 'http://localhost:8080/api/task';
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private authService: AuthService) {
+    }
+
+    createAuthorizationHeader(headers?: Headers): Headers {
+        let authHeaders = headers || new Headers();
+        authHeaders.append('Authorization', 'Bearer ' + this.authService.getAccessToken());
+        return authHeaders;
     }
 
     /**
@@ -23,7 +30,9 @@ export class TaskService {
      * @returns {Task<Task[]>} a promise which holds an array of Tasks objects
      */
     getAllTasksByProjectId(projectId: number): Promise<Task[]> {
-        return this.http.get(this.tasksServiceUrl + `/${projectId}`)
+        return this.http.get(this.tasksServiceUrl + `/${projectId}`, {
+            headers: this.createAuthorizationHeader()
+        })
             .map(response => response.json())
             .map(tasks => tasks.map(
                 task => Task.parseInputObjectToTask(task)
@@ -37,7 +46,9 @@ export class TaskService {
      * @returns {Promise<Task>} a promise which holds a single task object
      */
     getTaskById(id: number): Promise<Task> {
-        return this.http.get(this.taskServiceUrl + `/${id}`)
+        return this.http.get(this.taskServiceUrl + `/${id}`, {
+            headers: this.createAuthorizationHeader()
+        })
             .map(response => response.json())
             .map(task => Task.parseInputObjectToTask(task))
             .toPromise();
@@ -50,7 +61,9 @@ export class TaskService {
      *                            which holds a response.
      */
     deleteTaskById(id: number): Promise<Object> {
-        return this.http.delete(this.taskServiceUrl + `/${id}`)
+        return this.http.delete(this.taskServiceUrl + `/${id}`, {
+            headers: this.createAuthorizationHeader()
+        })
             .map(response => response.json())
             .toPromise();
     }
@@ -62,7 +75,9 @@ export class TaskService {
      *                            which holds the new task id
      */
     saveTask(task: Task, id: number): Promise<Object> {
-        return this.http.post(this.tasksServiceUrl + `/${id}`, task)
+        return this.http.post(this.tasksServiceUrl + `/${id}`, task, {
+            headers: this.createAuthorizationHeader()
+        })
             .map(response => response.json())
             .toPromise();
     }

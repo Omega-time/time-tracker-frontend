@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter} from "@angular/core";
 import { FILE_UPLOAD_DIRECTIVES, FileUploader, FileSelectDirective} from 'ng2-file-upload';
+import { Http, Headers } from "@angular/http";
+import {AuthService} from "../auth/auth.service";
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024;
 
@@ -20,7 +22,7 @@ export class FileUploadFormComponent implements OnInit {
     @Input() projectId: number;
     @Output() newFileAdded = new EventEmitter<boolean>();
 
-    constructor() {
+    constructor(private authService: AuthService) {
     }
 
     ngOnInit() {
@@ -29,7 +31,7 @@ export class FileUploadFormComponent implements OnInit {
 
     private initFileUploader() {
         this.fileUploadURL = this.fileUploadURL + '/' + this.projectId + '/files';
-        this.uploader = new FileUploader({ url: this.fileUploadURL });
+        this.uploader = new FileUploader({ url: this.fileUploadURL, authToken: this.createAuthorizationHeader()});
 
         this.uploader.onBeforeUploadItem = (fileItem: any) => {
             fileItem.method = 'POST';
@@ -48,5 +50,11 @@ export class FileUploadFormComponent implements OnInit {
             this.fileItem = null;
             this.newFileAdded.emit(true);
         }
+    }
+
+    createAuthorizationHeader(headers?: Headers): Headers {
+        let authHeaders = headers || new Headers();
+        authHeaders.append('Authorization', 'Bearer ' + this.authService.getAccessToken());
+        return authHeaders;
     }
 }
