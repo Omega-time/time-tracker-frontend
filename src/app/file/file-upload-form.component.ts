@@ -47,7 +47,6 @@ export class FileUploadFormComponent implements OnInit {
 
         this.uploader.onAfterAddingFile = (fileItem: any) => {
             this.fileItem = fileItem;
-            console.log(this.fileItem.file.name);
         }
 
         this.uploader.onSuccessItem = (fileItem: any) => {

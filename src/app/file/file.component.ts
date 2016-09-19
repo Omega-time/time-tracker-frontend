@@ -35,7 +35,6 @@ export class FileComponent implements OnInit {
         this.confirmDelete = false;
     }
     confirmDeletion(event: any) {
-        console.log('inside');
         this.confirmDelete = true;
     }
 
