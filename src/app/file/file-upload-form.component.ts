@@ -31,7 +31,7 @@ export class FileUploadFormComponent implements OnInit {
 
     private initFileUploader() {
         this.fileUploadURL = this.fileUploadURL + '/' + this.projectId + '/files';
-        this.uploader = new FileUploader({ url: this.fileUploadURL, authToken: this.createAuthorizationHeader()});
+        this.uploader = new FileUploader({ url: this.fileUploadURL, authToken: this.authService.getAccessToken()});
 
         this.uploader.onBeforeUploadItem = (fileItem: any) => {
             fileItem.method = 'POST';
