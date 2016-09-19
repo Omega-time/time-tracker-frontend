@@ -25,7 +25,8 @@ module.exports = function(defaults) {
       'isarray/index.js',
       'rxjs/**/*.+(js|js.map)',
       '@angular/**/*.+(js|js.map)',
-      'ng2-file-upload/**/*.+(js|js.map)'
+      'ng2-file-upload/**/*.+(js|js.map)',
+      "file-saver/**"
     ]
   });
 };

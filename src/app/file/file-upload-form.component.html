@@ -1,3 +1,7 @@
 <input type="file" name="file" id="file" class="inputfile btn btn-primary waves-effect waves-light" ng2FileSelect [uploader]="uploader">
 <label for="file">Избери Файл</label><span *ngIf="fileItem"><span class="well well-sm">{{fileItem.file?.name}} <button type="button" class="close1" data-dismiss="alert" (click)="resetFileForm($event)">&times;</button></span>
-<button class="btn btn-primary waves-effect waves-light" (click)="uploader.uploadItem(fileItem)">Прикачи</button></span>
+<button class="btn btn-primary waves-effect waves-light" (click)="uploader.uploadItem(fileItem)" [disabled]="fileTooLarge || invalidFileType">Прикачи</button></span>
+<div [hidden]="!fileTooLarge && !invalidFileType" class="alert alert-dismissible alert-danger">
+<div *ngIf="fileTooLarge">File size is too large.</div>
+<div *ngIf="invalidFileType">Invalid file type.</div>
+</div>

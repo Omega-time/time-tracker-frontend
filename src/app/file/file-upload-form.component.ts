@@ -19,6 +19,8 @@ export class FileUploadFormComponent implements OnInit {
     isFileSizeTooLarge: boolean;
     isFileTypeInvalid: boolean;
     private fileItem: any;
+    fileTooLarge = false;
+    invalidFileType = false;
 
     @Input() projectId: number;
     @Output() newFileAdded = new EventEmitter<boolean>();
@@ -46,11 +48,19 @@ export class FileUploadFormComponent implements OnInit {
         }
 
         this.uploader.onAfterAddingFile = (fileItem: any) => {
+            this.resetForm();
             this.fileItem = fileItem;
+            if (this.fileItem._file.size > MAX_FILE_SIZE) {
+                this.fileTooLarge = true;
+            }
+            if (DOCX_FILE_MIME_TYPE.indexOf(this.fileItem._file.type) < 0) {
+                this.invalidFileType = true;
+            }
+            console.log(fileItem);
         }
 
         this.uploader.onSuccessItem = (fileItem: any) => {
-            this.fileItem = null;
+            this.resetForm();
             this.newFileAdded.emit(true);
         }
     }
@@ -62,6 +72,12 @@ export class FileUploadFormComponent implements OnInit {
     }
 
     resetFileForm(event: any) {
+        this.resetForm();
+    }
+
+    resetForm() {
         this.fileItem = null;
+        this.fileTooLarge = false;
+        this.invalidFileType = false;
     }
 }

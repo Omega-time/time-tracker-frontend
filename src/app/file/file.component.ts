@@ -1,12 +1,13 @@
 import {Component, Input, Output, EventEmitter, OnInit, ElementRef} from "@angular/core";
 import {FileService} from "./file.service";
 import {DocFile} from "./docfile";
+import 'rxjs/Rx';
 
 @Component({
     moduleId: module.id,
     selector: 'tr.special',
     templateUrl: 'file.component.html',
-        host: {
+    host: {
         '(document:click)': 'handleClick($event)'
     }
 })
@@ -18,9 +19,10 @@ export class FileComponent implements OnInit {
     confirmDelete = false;
     public elementRef;
 
+
     constructor(private fileService: FileService,
-                private myElement: ElementRef) {
-                    this.elementRef = myElement;
+        private myElement: ElementRef) {
+        this.elementRef = myElement;
     }
 
     ngOnInit() {
@@ -36,6 +38,10 @@ export class FileComponent implements OnInit {
     }
     confirmDeletion(event: any) {
         this.confirmDelete = true;
+    }
+
+    getFile(event: any) {
+        this.fileService.getFileByNameAndProjectId(this.docFile, this.projectId);
     }
 
     handleClick(event) {

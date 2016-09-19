@@ -5,6 +5,8 @@ import 'rxjs/Rx';
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
 
+declare var saveAs;
+
 /**
  * Class which handles all HTTP requests to the
  * business layer. It stores and retrieves {@link Project}

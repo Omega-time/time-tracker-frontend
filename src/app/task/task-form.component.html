@@ -11,11 +11,11 @@
             <div class="form-group">
                 <div class="col-lg-10">
                     <label for="inputDuration" class="control-label">Продължителност</label>
-                    <div>
+                    <div class="duration-input">
                         <label for="inputDuration" class="control-label">Часове: </label>
-                        <input required pattern="[0-9]+" type="text" id="inputDurationHours" name="hours" [(ngModel)]="duration.hours" class="form-control" placeholder="0-24">
+                        <input pattern="(0[0-9]|1[0-9]|2[0-3])" type="text" id="inputDurationHours" name="hours" [(ngModel)]="duration.hours" class="form-control1" placeholder="0-23" #hours="ngModel">
                         <label for="inputDuration" class="control-label"> Минути: </label>
-                        <input required pattern="[0-9]+" type="text" id="inputDurationMinutes" name="minutes" [(ngModel)]="duration.minutes" class="form-control" placeholder="0-59">
+                        <input pattern="[0-9]+" type="text" id="inputDurationMinutes" name="minutes" [(ngModel)]="duration.minutes" class="form-control1" placeholder="0-59" #minutes="ngModel">
                     </div>
                 </div>
             </div>
@@ -32,9 +32,12 @@
                         <div [hidden]="name.valid">
                             <strong>Невалидно име на задача.</strong>
                         </div>
-                        <div [hidden]="duration.valid">
-                            <strong>Невалидна продължителност.</strong>
+                        <div [hidden]="hours.valid">
+                            <strong>Невалидни часове.</strong>
                         </div>
+                        <div [hidden]="minutes.valid">
+                            <strong>Невалидни минути.</strong>
+                        </div>                        
                     </div>
                 </div>
             </div>
