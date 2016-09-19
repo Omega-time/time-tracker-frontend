@@ -5,7 +5,8 @@ import {AuthService} from "../auth/auth.service";
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024;
 
-const DOCX_FILE_MIME_TYPE = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+const DOCX_FILE_MIME_TYPE = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'image/jpeg' , 'image/png' , 'text/plain' , 'application/pdf'];
+
 
 @Component({
     selector: 'file-upload-form',
@@ -32,18 +33,20 @@ export class FileUploadFormComponent implements OnInit {
     private initFileUploader() {
         this.fileUploadURL = this.fileUploadURL + '/' + this.projectId + '/files';
         this.uploader = new FileUploader({ url: this.fileUploadURL, authToken: this.authService.getAccessToken()});
+        this.uploader.options.allowedMimeType = DOCX_FILE_MIME_TYPE;
+        this.uploader.options.maxFileSize = MAX_FILE_SIZE;
 
         this.uploader.onBeforeUploadItem = (fileItem: any) => {
             fileItem.method = 'POST';
         }
         this.uploader.onWhenAddingFileFailed = (item: any, filter: any, options: any) => {
             this.isFileSizeTooLarge = !this.uploader._fileSizeFilter(item);
-            // this.isFileTypeInvalid = !this.uploader._mimeTypeFilter(item);
+            this.isFileTypeInvalid = !this.uploader._mimeTypeFilter(item);
+
         }
 
         this.uploader.onAfterAddingFile = (fileItem: any) => {
             this.fileItem = fileItem;
-            console.log(this.projectId);
         }
 
         this.uploader.onSuccessItem = (fileItem: any) => {

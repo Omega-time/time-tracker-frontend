@@ -1,17 +1,13 @@
 <h1 *ngIf="!name">
-    Hallo
+    Добър ден!
 </h1>
 <h1 *ngIf="name">
-    Hallo, {{name}}
+    Добър ден, {{name}}!
 </h1>
 
-<button class="btn btn-default" (click)="login()">
-    Login
+<button class="btn btn-primary waves-effect waves-light" (click)="login()">
+    Влез
 </button>
-<button class="btn btn-default" (click)="logoff()">
-    Logout
+<button class="btn btn-primary waves-effect waves-light" (click)="logoff()">
+    Излез
 </button>
-
-<div>
-    Username/Passwort zum Testen: max/geheim
-</div>

@@ -3,26 +3,26 @@
         <fieldset>
             <div class="form-group">
                 <div class="col-lg-10">
-                    <label for="name" class="control-label">Name</label>
-                    <input type="text" id="inputName" name="name" [(ngModel)]="taskToBeCreated.name" placeholder="Enter name" class="form-control"
+                    <label for="name" class="control-label">Задача</label>
+                    <input type="text" id="inputName" name="name" [(ngModel)]="taskToBeCreated.name" placeholder="Въведете задача" class="form-control"
                         required pattern="^.{2,255}$" #name="ngModel">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-lg-10">
-                    <label for="inputDuration" class="control-label">Duration</label>
+                    <label for="inputDuration" class="control-label">Продължителност</label>
                     <div>
-                        <label for="inputDuration" class="control-label">Hours: </label>
-                        <input required pattern="[0-9]+" type="text" id="inputDurationHours" name="hours" [(ngModel)]="duration.hours" class="form-control">
-                        <label for="inputDuration" class="control-label"> Minutes: </label>
-                        <input required pattern="[0-9]+" type="text" id="inputDurationMinutes" name="minutes" [(ngModel)]="duration.minutes" class="form-control">
+                        <label for="inputDuration" class="control-label">Часове: </label>
+                        <input required pattern="[0-9]+" type="text" id="inputDurationHours" name="hours" [(ngModel)]="duration.hours" class="form-control" placeholder="0-24">
+                        <label for="inputDuration" class="control-label"> Минути: </label>
+                        <input required pattern="[0-9]+" type="text" id="inputDurationMinutes" name="minutes" [(ngModel)]="duration.minutes" class="form-control" placeholder="0-59">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-lg-10">
-                    <label for="commentArea" class="control-label">Comment</label>
-                    <textarea id="commentArea" cols=15 rows=2 type="text" name="comment" [(ngModel)]="taskToBeCreated.comment" placeholder="Enter comment"
+                    <label for="commentArea" class="control-label">Коментар</label>
+                    <textarea id="commentArea" cols=15 rows=2 type="text" name="comment" [(ngModel)]="taskToBeCreated.comment" placeholder="Въведете коментар"
                         class="form-control"></textarea>
                 </div>
             </div>
@@ -30,10 +30,10 @@
                 <div class="col-lg-10">
                     <div [hidden]="newTask.valid || newTask.pristine" class="alert alert-dismissible alert-danger">
                         <div [hidden]="name.valid">
-                            <strong>Invalid name.</strong>
+                            <strong>Невалидно име на задача.</strong>
                         </div>
                         <div [hidden]="duration.valid">
-                            <strong>Invalid duration.</strong>
+                            <strong>Невалидна продължителност.</strong>
                         </div>
                     </div>
                 </div>
