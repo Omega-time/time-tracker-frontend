@@ -21,8 +21,8 @@ src/.vscode/
 /connect.lock
 /coverage/*
 /libpeerconnection.log
-npm-debug.log
-testem.log
+*.log
+*.log.*
 /typings
 **/*.log
 **/*.log.*
