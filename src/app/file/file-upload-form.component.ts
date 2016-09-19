@@ -5,7 +5,7 @@ import {AuthService} from "../auth/auth.service";
 
 const MAX_FILE_SIZE = 3 * 1024 * 1024;
 
-const DOCX_FILE_MIME_TYPE = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'image/jpeg' , 'image/png' , 'text/plain' , 'application/pdf'];
+const DOCX_FILE_MIME_TYPE = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword', 'image/jpeg', 'image/png', 'text/plain', 'application/pdf'];
 
 
 @Component({
@@ -32,7 +32,7 @@ export class FileUploadFormComponent implements OnInit {
 
     private initFileUploader() {
         this.fileUploadURL = this.fileUploadURL + '/' + this.projectId + '/files';
-        this.uploader = new FileUploader({ url: this.fileUploadURL, authToken: this.authService.getAccessToken()});
+        this.uploader = new FileUploader({ url: this.fileUploadURL, authToken: this.authService.getAccessToken() });
         this.uploader.options.allowedMimeType = DOCX_FILE_MIME_TYPE;
         this.uploader.options.maxFileSize = MAX_FILE_SIZE;
 
@@ -47,6 +47,7 @@ export class FileUploadFormComponent implements OnInit {
 
         this.uploader.onAfterAddingFile = (fileItem: any) => {
             this.fileItem = fileItem;
+            console.log(this.fileItem.file.name);
         }
 
         this.uploader.onSuccessItem = (fileItem: any) => {
@@ -59,5 +60,9 @@ export class FileUploadFormComponent implements OnInit {
         let authHeaders = headers || new Headers();
         authHeaders.append('Authorization', 'Bearer ' + this.authService.getAccessToken());
         return authHeaders;
+    }
+
+    resetFileForm(event: any) {
+        this.fileItem = null;
     }
 }

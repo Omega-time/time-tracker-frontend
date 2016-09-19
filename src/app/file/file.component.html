@@ -1,7 +1,7 @@
 <td><a [href]="fileUrl" download>{{docFile.name}}</a></td>
 <td>{{docFile.size}}kb</td>
 <td><button (click)="confirmDeletion($event)" class="btn btn-primary waves-effect waves-light">Изтрий</button>
-    <div *ngIf="confirmDelete" class="alert alert-dismissible alert-danger" (clickOutside)="confirmDelete=false">
+    <span *ngIf="confirmDelete" class="alert alert-dismissible alert-danger" (clickOutside)="confirmDelete=false">
         <strong>Сигурни ли сте, че искате да изтриете {{docFile.name}}?</strong> <button class="btn btn-primary" type="button" (click)="onClickDelete($event)">Да, изтрий го!</button>
-    </div>
+    </span>
 </td>

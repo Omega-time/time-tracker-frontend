@@ -33,9 +33,9 @@ export class FileComponent implements OnInit {
             .then(resp => (this.fileDeleted.emit(true)))
             .catch(error => console.log(error));
         this.confirmDelete = false;
-
     }
     confirmDeletion(event: any) {
+        console.log('inside');
         this.confirmDelete = true;
     }
 

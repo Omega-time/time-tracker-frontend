@@ -20,8 +20,8 @@ export class TaskFormComponent implements OnInit {
     taskToBeCreated: Task;
     @Input() projectId: number;
     duration = {
-        hours: 0,
-        minutes: 0
+        hours: null,
+        minutes: null
     }
     @Output() newTaskAdded = new EventEmitter<boolean>();
     active = true;
@@ -58,6 +58,8 @@ export class TaskFormComponent implements OnInit {
      * Resets the Add Task form by giving taskToBeCreated an empty Task object. 
      */
     formReset() {
+        this.duration.hours = null;
+        this.duration.minutes = null;
         this.taskToBeCreated = Task.createEmptyTask();
         this.active = false;
         setTimeout(() => this.active = true, 0);
