@@ -4,6 +4,8 @@
     <!-- use the duration pipe here to define the exact amount of hours and minutes separately -->
     <label for="timeWorked">Продължителност:</label> <span class="badge">{{task?.duration | durationPipe:true}}ч</span> <span class="badge">{{task?.duration | durationPipe:false}}м</span>
     <br>
+    <label for="date">Дата на създаване:</label> {{ task?.date | date:"dd/MM/yy hh:mm"}}
+    <br>
     <label for="comment">Коментар:</label> {{task?.comment}}
     <div *ngIf="confirmDelete" class="alert alert-dismissible alert-danger" (clickOutside)="confirmDelete=false">
         <strong>Сигурни ли сте, че искате да изтриете тази задача?</strong> <button class="btn btn-primary" type="button" (click)="deleteTask(task?.id, $event)">Да, изтрий я!</button>
