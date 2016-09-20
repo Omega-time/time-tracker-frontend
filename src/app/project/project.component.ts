@@ -12,29 +12,29 @@ import {ProjectService} from "./project.service";
  * the Input field project.
  * @class
  */
-@Component ({
+@Component({
     moduleId: module.id,
     selector: 'project',
     templateUrl: 'project.component.html',
     directives: [TaskListComponent, FileListComponent],
     providers: [ProjectService]
 })
-export class ProjectComponent implements OnInit{
+export class ProjectComponent implements OnInit {
     projectId: number;
     currentProject: Project;
 
     constructor(private route: ActivatedRoute,
-                private projectService: ProjectService) {
+        private projectService: ProjectService) {
 
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.projectId = id;
         });
         this.projectService.getProjectById(this.projectId)
-                            .then(project => this.currentProject = project)
-                            .catch(err => console.log(err));
+            .then(project => this.currentProject = project)
+            .catch(err => console.log(err));
     }
 }
