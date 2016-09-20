@@ -1,4 +1,4 @@
-<td><a (click)="getFile($event)">{{docFile.name}}</a></td>
+<td><a href="javascript:void(0)" (click)="getFile($event)">{{docFile.name}}</a></td>
 <td>{{docFile.size}}kb</td>
 <td><button (click)="confirmDeletion($event)" class="btn btn-primary waves-effect waves-light">Изтрий</button>
     <span *ngIf="confirmDelete" class="alert alert-dismissible alert-danger" (clickOutside)="confirmDelete=false">
