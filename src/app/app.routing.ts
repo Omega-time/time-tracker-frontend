@@ -16,6 +16,7 @@ const routes: RouterConfig = [
     {path: 'projects/create', component: ProjectFormComponent, canActivate: [AuthGuard]},
     {path: 'project/:id', component: ProjectComponent, canActivate: [AuthGuard]},
     {path: '**', component: PageNotFoundComponent}
+    
     ];
 
 /**

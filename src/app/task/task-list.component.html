@@ -10,20 +10,25 @@
         <h2>
             <strong>Задачи:</strong>
         </h2>
-        <div class="form-group">
+        <div class="well">
             <strong>Сортирай по година:</strong>
-            <input list="years" [value]="yearFilter" (input)="yearFilter = $event.target.value" class="form-control"/>
+            <input list="years" [value]="yearFilter" (input)="yearFilter = $event.target.value" class="form-control2"/>
             <datalist id="years">
                 <option *ngFor="let year of years" value={{year}}>
             </datalist>
             <strong>Сортирай по месец:</strong>
-            <input list="months" [value]="monthFilter" (input)="monthFilter = $event.target.value" class="form-control"/>
+            <input list="months" [value]="monthFilter" (input)="monthFilter = $event.target.value" class="form-control2"/>
             <datalist id="months">
                 <option *ngFor="let month of months" value={{month+1}}></option>
             </datalist>
+            <strong>Сортирай по ден:</strong>
+            <input list="days" [value]="dayFilter" (input)="dayFilter = $event.target.value" class="form-control2"/>
+            <datalist id="days">
+                <option *ngFor="let day of days" value={{day}}></option>
+            </datalist>
         </div>
         <ul class="list-group">
-            <li *ngFor="let task of tasks | YearPipe:yearFilter | MonthPipe:monthFilter" class="list-group-item">
+            <li *ngFor="let task of tasks | YearPipe:yearFilter | MonthPipe:monthFilter | DayPipe:dayFilter" class="list-group-item">
                 <task [task]="task" (taskDeleted)="getProjectTasks()"></task>
             </li>
         </ul>

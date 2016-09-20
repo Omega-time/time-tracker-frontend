@@ -7,6 +7,7 @@ import {Router, ActivatedRoute } from "@angular/router";
 
 import { YearPipe } from './filter.by.year.pipe';
 import { MonthPipe } from './filter.by.month.pipe';
+import { DayPipe } from './filter.by.day.pipe';
 
 /**
  * Renders a list of tasks provided from {@link TaskService}.
@@ -19,15 +20,17 @@ import { MonthPipe } from './filter.by.month.pipe';
     templateUrl: 'task-list.component.html',
     providers: [TaskService],
     directives: [TaskComponent, TaskFormComponent],
-    pipes: [YearPipe, MonthPipe]
+    pipes: [YearPipe, MonthPipe, DayPipe]
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[];
     projectId: number;
     years: String[];
     months: String[];
+    days: String[];
     yearFilter = '';
     monthFilter = '';
+    dayFilter = '';
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -50,6 +53,7 @@ export class TaskListComponent implements OnInit {
     getProjectTasks() {
         this.years = [];
         this.months = [];
+        this.days = [];
         this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.projectId = id;
@@ -64,6 +68,9 @@ export class TaskListComponent implements OnInit {
                             }
                             if (this.months.indexOf(task.date.getMonth()) === -1) {
                                 this.months.push(task.date.getMonth());
+                            }
+                            if (this.days.indexOf(task.date.getDate()) === -1) {
+                                this.days.push(task.date.getDate());
                             }
                         });
                     }
