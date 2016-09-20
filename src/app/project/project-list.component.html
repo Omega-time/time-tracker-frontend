@@ -1,16 +1,54 @@
 <div class="bs-docs-select">
-    <div class="col-lg-10">
+    <!--<div class="col-lg-10">
         <div class="col-lg-offset-1 col-lg-10 well">
-                    <a data-toggle="collapse" href="javascript:void(0)" (click)="collapse()">
-                        <h2>
-                            <strong>Създаване на нов проект.</strong>
-                            <span class="badge" data-toggle="tooltip" data-placement="top" title="Името на проекта трябва да е с дължина между 2 и 90 символа.">?</span>
-                        </h2>
-                    </a>
+            <a data-toggle="collapse" href="javascript:void(0)" (click)="collapse()">
+                <h2>
+                    <strong>Създаване на нов проект</strong>
+                    <span class="badge" data-toggle="tooltip" data-placement="top" title="Името на проекта трябва да е с дължина между 2 и 90 символа.">?</span>
+                </h2>
+            </a>
             <project-form *ngIf="!collapsed" (newProjectAdded)="getAllProjects()"></project-form>
         </div>
+    </div>-->
+
+    <div class="col-lg-11">
+        <div class="col-lg-offset-1 col-lg-11">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <a data-toggle="collapse" href="javascript:void(0)" (click)="collapse()" class="aclass">
+                        <h4>
+                            <strong>Създаване на нов проект</strong>
+                            <span class="badge" data-toggle="tooltip" data-placement="top" title="Името на проекта трябва да е с дължина между 2 и 90 символа.">?</span>
+                        </h4>
+                    </a>
+                </div>
+                <project-form *ngIf="!collapsed" (newProjectAdded)="getAllProjects()"></project-form>
+
+            </div>
+        </div>
     </div>
-    <div class="col-lg-10">
+
+    <div class="col-lg-11">
+        <div class="col-lg-offset-1 col-lg-11">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <h4>
+                        <strong>Текущи проекти</strong>
+                    </h4>
+                </div>
+                <!--<div class="panel-body">-->
+                <accordion>
+                    <accordion-group [heading]="project.name" *ngFor="let project of projects">
+                        <project-button [project]="project"></project-button>
+                    </accordion-group>
+                </accordion>
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+</div>
+<!--<div class="col-lg-10">
         <div class="col-lg-offset-1 col-lg-10">
             <h2>
                 <strong>Текущи проекти:</strong>
@@ -24,4 +62,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
