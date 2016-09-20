@@ -7,6 +7,11 @@
     </h1>
 </div>
 
+<div class="centered" *ngIf="name">
+    <button class="loginBtn" id="loginButton" (click)="logoff()">
+        Излезте
+    </button>
+</div>
 
 <div class="centered" *ngIf="!name">
     <button class="loginBtn" id="loginButton" (click)="login()">
