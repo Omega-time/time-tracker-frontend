@@ -15,15 +15,15 @@ import {Router, ActivatedRoute } from "@angular/router";
     selector: 'task-list',
     templateUrl: 'task-list.component.html',
     providers: [TaskService],
-    directives: [TaskComponent , TaskFormComponent]
+    directives: [TaskComponent, TaskFormComponent]
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[];
     projectId: number;
 
     constructor(private route: ActivatedRoute,
-                private router: Router,
-                private taskService: TaskService) {
+        private router: Router,
+        private taskService: TaskService) {
     }
 
     /**
@@ -39,11 +39,18 @@ export class TaskListComponent implements OnInit {
      * Gets all tasks for the current project.
      */
     getProjectTasks() {
-         this.route.params.subscribe(params => {
+        this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.projectId = id;
             this.taskService.getAllTasksByProjectId(id)
-                .then(tasks => this.tasks = tasks)
+                .then(tasks => {
+                    this.tasks = tasks
+                    if (this.tasks != null) {
+                        this.tasks.forEach(task => {
+                            task.date = new Date(task.date);
+                        });
+                    }
+                })
                 .catch(err => console.error(err));
         });
     }

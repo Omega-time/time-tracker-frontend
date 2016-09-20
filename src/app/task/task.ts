@@ -6,7 +6,8 @@ export class Task {
     constructor(public id: number,
         public name: string,
         public duration: number,
-        public comment: string) {
+        public comment: string,
+        public date: any) {
     }
 
     /**
@@ -27,7 +28,7 @@ export class Task {
      * @returns {Task} the parsed object
      */
     public static parseInputObjectToTask(obj) {
-        return new Task(obj.id, obj.name, obj.duration, obj.comment);
+        return new Task(obj.id, obj.name, obj.duration, obj.comment, obj.date);
     }
 
     /**
@@ -36,6 +37,6 @@ export class Task {
      * @returns {Task} the empty Task
      */
     public static createEmptyTask() {
-        return new Task(null, null, null, null);
+        return new Task(null, null, null, null, null);
     }
 }

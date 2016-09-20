@@ -1,7 +1,7 @@
 .loginBtn {
     position: absolute;
     top:30%;
-    left: 50%;
+    left: 49%;
     margin-right: -50%;
     transform: translate(-50%, 50%);
     box-sizing: border-box;
@@ -22,7 +22,7 @@
 .wellcomeMessage {
     position: absolute;
     top: 10%;
-    left: 50%;
+    left: 49%;
     margin-right: -50%;
     transform: translate(-50%, 50%);
 }
