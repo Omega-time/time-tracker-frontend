@@ -45,6 +45,10 @@
 	color: #333333;
     background-color: #ffffff;
     border-color: #dddddd;
+}
+.panel-default > .panel-heading:hover {
+	cursor: pointer;
+    background-color: rgba(221, 221, 221, 0.4);
 }	
 
 .form-control1 {
