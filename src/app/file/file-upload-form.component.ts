@@ -56,7 +56,6 @@ export class FileUploadFormComponent implements OnInit {
             if (DOCX_FILE_MIME_TYPE.indexOf(this.fileItem._file.type) < 0) {
                 this.invalidFileType = true;
             }
-            console.log(fileItem);
         }
 
         this.uploader.onSuccessItem = (fileItem: any) => {

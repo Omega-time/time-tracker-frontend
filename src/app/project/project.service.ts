@@ -19,7 +19,6 @@ export class ProjectService {
     private baseUrl = 'http://localhost:8080';
     private projectsServiceUrl = this.baseUrl + '/api/projects';
 
-
     constructor(private http: Http, private authService: AuthService) {
     }
 
@@ -50,7 +49,7 @@ export class ProjectService {
      * @returns {Promise<Project>} a promise which holds a single project object
      */
     getProjectById(id: number): Promise<Project> {
-        return this.http.get(this.projectsServiceUrl + `/${id}`, {
+        return this.http.get('http://localhost:8080' + '/api/project' + `/${id}`, {
               headers: this.createAuthorizationHeader()
             })
             .map(response => response.json())

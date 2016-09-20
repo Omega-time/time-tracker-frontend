@@ -13,6 +13,11 @@
 	width: 2%;
 }
 
+.projectname{
+	text-align: center;
+	vertical-align: middle;
+}
+
 .aclass{
 	color: #ffffff;
 }
