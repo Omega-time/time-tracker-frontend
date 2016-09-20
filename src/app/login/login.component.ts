@@ -6,6 +6,7 @@ import { OAuthService } from 'angular2-oauth2/oauth-service';
     templateUrl: 'login.component.html'
 })
 export class LoginComponent {
+
     constructor(private oAuthService: OAuthService) {
     }
 

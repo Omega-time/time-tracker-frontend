@@ -11,7 +11,7 @@ import {AuthGuard} from "./auth/auth-guard.service";
  */
 const routes: RouterConfig = [
     {path: '', redirectTo:'/home', pathMatch: 'full'},
-    {path: 'home', component: LoginComponent, },
+    {path: 'home', component: LoginComponent },
     {path: 'projects', component: ProjectListComponent, canActivate: [AuthGuard]},
     {path: 'projects/create', component: ProjectFormComponent, canActivate: [AuthGuard]},
     {path: 'project/:id', component: ProjectComponent, canActivate: [AuthGuard]},
