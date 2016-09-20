@@ -11,13 +11,13 @@
             <strong>Задачи:</strong>
         </h2>
         <div class="form-group">
-            <br>Сортирай по година:
-            <input list="years" [value]="yearFilter" (input)="yearFilter = $event.target.value" />
+            <strong>Сортирай по година:</strong>
+            <input list="years" [value]="yearFilter" (input)="yearFilter = $event.target.value" class="form-control"/>
             <datalist id="years">
                 <option *ngFor="let year of years" value={{year}}>
             </datalist>
-            <br>Сортирай по месец:
-            <input list="months" [value]="monthFilter" (input)="monthFilter = $event.target.value" />
+            <strong>Сортирай по месец:</strong>
+            <input list="months" [value]="monthFilter" (input)="monthFilter = $event.target.value" class="form-control"/>
             <datalist id="months">
                 <option *ngFor="let month of months" value={{month+1}}></option>
             </datalist>
