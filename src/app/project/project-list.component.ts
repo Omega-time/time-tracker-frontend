@@ -2,7 +2,9 @@ import {Component, OnInit} from "@angular/core";
 import {Project} from "./project";
 import {ProjectService} from "./project.service";
 import {ProjectButtonComponent} from "./project-button.component";
-import {ProjectFormComponent} from "./project-form.component"
+import {ProjectFormComponent} from "./project-form.component";
+import {Accordion, AccordionGroup} from '../accordion';
+
 
 /**
  * Renders a list of projects provided from {@link ProjectService}.
@@ -13,12 +15,13 @@ import {ProjectFormComponent} from "./project-form.component"
     moduleId: module.id,
     selector: 'project-list',
     templateUrl: 'project-list.component.html',
-    directives: [ProjectButtonComponent, ProjectFormComponent],
+    directives: [ProjectButtonComponent, ProjectFormComponent , Accordion, AccordionGroup],
     providers: [ProjectService]
 })
 export class ProjectListComponent implements OnInit {
     projects: Project[];
     collapsed = true;
+    isGroupOpen = false;
 
     constructor(private projectService: ProjectService) {
     }
