@@ -10,8 +10,20 @@
         <h2>
             <strong>Задачи:</strong>
         </h2>
+        <div class="form-group">
+            <br>Сортирай по година:
+            <input list="years" [value]="yearFilter" (input)="yearFilter = $event.target.value" />
+            <datalist id="years">
+                <option *ngFor="let year of years" value={{year}}>
+            </datalist>
+            <br>Сортирай по месец:
+            <input list="months" [value]="monthFilter" (input)="monthFilter = $event.target.value" />
+            <datalist id="months">
+                <option *ngFor="let month of months" value={{month+1}}></option>
+            </datalist>
+        </div>
         <ul class="list-group">
-            <li *ngFor="let task of tasks" class="list-group-item">
+            <li *ngFor="let task of tasks | YearPipe:yearFilter | MonthPipe:monthFilter" class="list-group-item">
                 <task [task]="task" (taskDeleted)="getProjectTasks()"></task>
             </li>
         </ul>

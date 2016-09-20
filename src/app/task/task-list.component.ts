@@ -1,9 +1,12 @@
-import {Component, OnInit, Input} from "@angular/core";
+import {Component, OnInit, Input, Pipe} from "@angular/core";
 import {Task} from "./task";
 import {TaskService} from "./task.service";
 import {TaskComponent} from "./task.component";
 import {TaskFormComponent} from "./task-form.component";
 import {Router, ActivatedRoute } from "@angular/router";
+
+import { YearPipe } from './filter.by.year.pipe';
+import { MonthPipe } from './filter.by.month.pipe';
 
 /**
  * Renders a list of tasks provided from {@link TaskService}.
@@ -15,11 +18,16 @@ import {Router, ActivatedRoute } from "@angular/router";
     selector: 'task-list',
     templateUrl: 'task-list.component.html',
     providers: [TaskService],
-    directives: [TaskComponent, TaskFormComponent]
+    directives: [TaskComponent, TaskFormComponent],
+    pipes: [YearPipe, MonthPipe]
 })
 export class TaskListComponent implements OnInit {
     tasks: Task[];
     projectId: number;
+    years: String[];
+    months: String[];
+    yearFilter = '';
+    monthFilter = '';
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -36,9 +44,12 @@ export class TaskListComponent implements OnInit {
     }
 
     /**
-     * Gets all tasks for the current project.
+     * Gets all tasks for the current project. And populates the months and years 
+     * arrays in order to fill datalists to help us sort by them.
      */
     getProjectTasks() {
+        this.years = [];
+        this.months = [];
         this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             this.projectId = id;
@@ -48,6 +59,12 @@ export class TaskListComponent implements OnInit {
                     if (this.tasks != null) {
                         this.tasks.forEach(task => {
                             task.date = new Date(task.date);
+                            if (this.years.indexOf(task.date.getFullYear()) === -1) {
+                                this.years.push(task.date.getFullYear());
+                            }
+                            if (this.months.indexOf(task.date.getMonth()) === -1) {
+                                this.months.push(task.date.getMonth());
+                            }
                         });
                     }
                 })
