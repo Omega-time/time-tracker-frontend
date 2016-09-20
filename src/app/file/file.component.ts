@@ -12,6 +12,7 @@ import 'rxjs/Rx';
     }
 })
 export class FileComponent implements OnInit {
+    client:boolean;
     @Input() docFile: DocFile;
     @Input() projectId: number;
     @Output() fileDeleted = new EventEmitter<boolean>();
@@ -26,6 +27,7 @@ export class FileComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.client = sessionStorage.getItem("client") === "true";
         this.fileUrl = "http://localhost:8080/api/project/" + this.projectId + "/" + this.docFile.name;
     }
 

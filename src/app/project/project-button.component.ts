@@ -17,6 +17,7 @@ import {Router} from "@angular/router";
     directives: [ProjectComponent]
 })
 export class ProjectButtonComponent {
+    @Input() client: boolean;
     @Input() project: Project;
 
     constructor(private router: Router) {
@@ -26,6 +27,11 @@ export class ProjectButtonComponent {
     }
 
     goToProject() {
+        if(this.client) {
+          sessionStorage.setItem("client", "true");
+        } else {
+          sessionStorage.removeItem("client");
+        }
         this.router.navigate(['/project', this.project.id]);
     }
 }

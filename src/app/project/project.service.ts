@@ -49,7 +49,7 @@ export class ProjectService {
      * @returns {Promise<Project>} a promise which holds a single project object
      */
     getProjectById(id: number): Promise<Project> {
-        return this.http.get('http://localhost:8080' + '/api/project' + `/${id}`, {
+        return this.http.get(this.projectsServiceUrl + `/${id}`, {
               headers: this.createAuthorizationHeader()
             })
             .map(response => response.json())
@@ -84,5 +84,11 @@ export class ProjectService {
             })
             .map(response => response.json())
             .toPromise();
+    }
+
+    addClient(projectId:number, client:string): Promise<Object> {
+      return this.http.patch(this.projectsServiceUrl + `/${projectId}/client`, client, {
+            headers: this.createAuthorizationHeader()
+          }).toPromise();
     }
 }

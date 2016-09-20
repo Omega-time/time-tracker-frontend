@@ -1,6 +1,7 @@
 import {Component, OnInit, EventEmitter, Output, Input} from "@angular/core";
 import {Task} from "./task";
 import {TaskService} from "./task.service";
+import {ProjectService} from "../project/project.service";
 
 /**
  * Represents a form which sends a new task to
@@ -12,11 +13,12 @@ import {TaskService} from "./task.service";
     moduleId: module.id,
     selector: 'task-form',
     templateUrl: 'task-form.component.html',
-    providers: [TaskService],
+    providers: [TaskService, ProjectService],
 
 })
 
 export class TaskFormComponent implements OnInit {
+    client:string;
     taskToBeCreated: Task;
     @Input() projectId: number;
     duration = {
@@ -26,7 +28,7 @@ export class TaskFormComponent implements OnInit {
     @Output() newTaskAdded = new EventEmitter<boolean>();
     active = true;
 
-    constructor(private taskService: TaskService) {
+    constructor(private taskService: TaskService, private projectService: ProjectService) {
     }
 
     /**
@@ -54,8 +56,16 @@ export class TaskFormComponent implements OnInit {
             .catch(err => console.log(err));
     }
 
+    addClient(form) {
+      this.projectService.addClient(this.projectId, this.client)
+          .then(resp => {
+            (<HTMLFormElement>document.getElementById("clientForm")).reset();
+          })
+          .catch(err=>console.error(err));
+    }
+
     /**
-     * Resets the Add Task form by giving taskToBeCreated an empty Task object. 
+     * Resets the Add Task form by giving taskToBeCreated an empty Task object.
      */
     formReset() {
         this.duration.hours = null;

@@ -20,6 +20,7 @@ import {Accordion, AccordionGroup} from '../accordion';
 })
 export class ProjectListComponent implements OnInit {
     projects: Project[];
+    clientProjects: Project[];
     collapsed = true;
     isGroupOpen = false;
 
@@ -32,6 +33,9 @@ export class ProjectListComponent implements OnInit {
      * provided service to load all projects.
      */
     ngOnInit() {
+        //removes the fragment from the url
+        history.pushState("", document.title, window.location.pathname);
+        this.clientProjects = [];
         this.getAllProjects();
     }
 
@@ -40,7 +44,21 @@ export class ProjectListComponent implements OnInit {
      */
     getAllProjects() {
         this.projectService.getAllProjects()
-            .then(projects => this.projects = projects.reverse())
+            .then(projects => {
+              this.projects = projects.filter(p=> {
+                var result = true;
+                p.clients.forEach(client=> {
+                  debugger;
+                  var clientId = JSON.parse(sessionStorage.getItem("id_token_claims_obj")).sub;
+                  if(clientId === client["user_id"]) {
+                    result = false;
+                    this.clientProjects.push(p);
+                  }
+                });
+                return result;
+              })
+
+            })
             .catch(err => console.error(err));
     }
     collapse() {

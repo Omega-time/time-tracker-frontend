@@ -23,6 +23,7 @@ import { DayPipe } from './filter.by.day.pipe';
     pipes: [YearPipe, MonthPipe, DayPipe]
 })
 export class TaskListComponent implements OnInit {
+    client: boolean;
     tasks: Task[];
     projectId: number;
     years: String[];
@@ -43,11 +44,12 @@ export class TaskListComponent implements OnInit {
      * provided service to load all tasks.
      */
     ngOnInit() {
+        this.client = sessionStorage.getItem("client") === "true";
         this.getProjectTasks();
     }
 
     /**
-     * Gets all tasks for the current project. And populates the months and years 
+     * Gets all tasks for the current project. And populates the months and years
      * arrays in order to fill datalists to help us sort by them.
      */
     getProjectTasks() {

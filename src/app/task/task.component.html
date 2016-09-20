@@ -1,5 +1,5 @@
 <div>
-    <button type="button" class="close" data-dismiss="alert" (click)="onClickDelete($event)">&times;</button>
+    <button *ngIf="!client" type="button" class="close" data-dismiss="alert" (click)="onClickDelete($event)">&times;</button>
     <label for="title">Задача:</label> {{task?.name}}
     <!-- use the duration pipe here to define the exact amount of hours and minutes separately -->
     <label for="timeWorked">Продължителност:</label> <span class="badge">{{task?.duration | durationPipe:true}}ч</span> <span class="badge">{{task?.duration | durationPipe:false}}м</span>
