@@ -35,7 +35,6 @@ export class ProjectListComponent implements OnInit {
     ngOnInit() {
         //removes the fragment from the url
         history.pushState("", document.title, window.location.pathname);
-        this.clientProjects = [];
         this.getAllProjects();
     }
 
@@ -43,6 +42,7 @@ export class ProjectListComponent implements OnInit {
      * Gets all projects for the current user.
      */
     getAllProjects() {
+        this.clientProjects = [];
         this.projectService.getAllProjects()
             .then(projects => {
               this.projects = projects.filter(p=> {
