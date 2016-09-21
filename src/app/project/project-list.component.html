@@ -15,13 +15,13 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-11">
+    <div class="col-lg-11" *ngIf="!noProjects">
         <div class="col-lg-offset-1 col-lg-11">
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
                     <h4>
-                        <strong>Текущи проекти</strong>
+                        <strong>Мои проекти</strong>
                     </h4>
                 </div>
                 <accordion>
@@ -29,11 +29,31 @@
                         <span>Дата на създаване: <em>{{project?.dateOfCreation | date:"dd/MM/yy hh:mm"}}</em>
                         <span class="col-lg-offset-1">Последна промяна: <em>{{project?.dateLastChanged | date:"dd/MM/yy hh:mm"}}</em></span><p>
                         Последна дейност: <em>{{project?.lastTaskName}}</em> </span>
-                        
+
                         <project-button [project]="project"></project-button>
                     </accordion-group>
                 </accordion>
             </div>
         </div>
     </div>
+<div class="col-lg-11" *ngIf="!noClientProjects">
+  <div class="col-lg-offset-1 col-lg-11">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h4>
+          <strong>Клиентски проекти</strong>
+        </h4>
+      </div>
+      <accordion>
+        <accordion-group [heading]="project.name" *ngFor="let project of clientProjects">
+                        <span>Дата на създаване: <em>{{project?.dateOfCreation | date:"dd/MM/yy hh:mm"}}</em>
+                        <span class="col-lg-offset-1">Последна промяна: <em>{{project?.dateLastChanged | date:"dd/MM/yy hh:mm"}}</em></span><p>
+                        Последна дейност: <em>{{project?.lastTaskName}}</em> </span>
+
+          <project-button [project]="project" [client]="true"></project-button>
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+</div>
 </div>

@@ -20,6 +20,7 @@ import {DurationPipe} from "./duration.pipe";
     }
 })
 export class TaskComponent {
+    client:boolean;
     @Input() task: Task;
     @Output() taskDeleted = new EventEmitter<boolean>();
     confirmDelete: boolean;
@@ -28,6 +29,7 @@ export class TaskComponent {
     constructor(private taskService: TaskService,
         private myElement: ElementRef) {
         this.elementRef = myElement;
+        this.client = sessionStorage.getItem("client") === "true";
     }
 
     /**
@@ -38,7 +40,7 @@ export class TaskComponent {
     }
 
     /**
-     * Deletes the task after user confirmation. 
+     * Deletes the task after user confirmation.
      */
     deleteTask(taskId: number) {
         this.taskService

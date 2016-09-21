@@ -14,7 +14,7 @@ const DOCX_FILE_MIME_TYPE = ['application/vnd.openxmlformats-officedocument.word
     directives: [FILE_UPLOAD_DIRECTIVES]
 })
 export class FileUploadFormComponent implements OnInit {
-    private fileUploadURL = 'http://localhost:8080/api/project';
+    private fileUploadURL = 'http://localhost:8080/api/projects';
     public uploader: FileUploader;
     isFileSizeTooLarge: boolean;
     isFileTypeInvalid: boolean;

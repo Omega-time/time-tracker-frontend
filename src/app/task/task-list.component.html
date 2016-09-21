@@ -1,12 +1,12 @@
 <div class="bs-docs-section">
-    <div class="col-lg-4 col-lg-offset-1">
+    <div *ngIf="!client" class="col-lg-4 col-lg-offset-1" >
         <h2>
             <strong>Добавяне на задача</strong>
             <span class="badge" data-toggle="tooltip" data-placement="top" title="Името на задачата трябва да бъде между 2 и 90 символа. Продължителността може да бъде с часове между 0-24 и минути 0-59. Коментарът не е задължителен.">?</span>
         </h2>
         <task-form [projectId]="projectId" (newTaskAdded)="getProjectTasks()"></task-form>
     </div>
-    <div class="col-lg-6">
+    <div [ngClass]="client ? 'col-lg-offset-1 col-lg-10' : 'col-lg-6'">
         <h2>
             <strong>Задачи:</strong>
         </h2>

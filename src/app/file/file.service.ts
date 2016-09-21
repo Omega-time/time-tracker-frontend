@@ -8,7 +8,7 @@ declare var saveAs;
 
 @Injectable()
 export class FileService {
-    private serviceUrl = 'http://localhost:8080/api/project';
+    private serviceUrl = 'http://localhost:8080/api/projects';
 
     constructor(private http: Http, private authService: AuthService) {
     }

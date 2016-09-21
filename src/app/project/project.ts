@@ -5,6 +5,7 @@
 export class Project{
   constructor(public id:number,
               public name:string,
+              public clients: Object[],
               public lastTaskName: string,
               public dateOfCreation:Date,
               public dateLastChanged: Date
@@ -19,7 +20,7 @@ export class Project{
    * @returns {Project} the parsed object
    */
   public static parseInputObjectToProject(obj) {
-    return new Project(obj.id, obj.name, obj.lastTaskName, obj.dateOfCreation, obj.dateLastChanged);
+    return new Project(obj.id, obj.name, obj.clients, obj.lastTaskName, obj.dateOfCreation, obj.dateLastChanged);
   }
 
   /**
@@ -28,6 +29,6 @@ export class Project{
    * @returns {Project} the empty Project
    */
   public static createEmptyProject() {
-    return new Project(null, null, null, null, null);
+    return new Project(null, null, null, null, null, null);
   }
 }
