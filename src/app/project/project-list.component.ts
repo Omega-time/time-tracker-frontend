@@ -21,6 +21,8 @@ import {Accordion, AccordionGroup} from '../accordion';
 export class ProjectListComponent implements OnInit {
     projects: Project[];
     clientProjects: Project[];
+    noProjects: boolean;
+    noClientProjects: boolean;
     collapsed = true;
     isGroupOpen = false;
 
@@ -48,21 +50,28 @@ export class ProjectListComponent implements OnInit {
               this.projects = projects.filter(p=> {
                 var result = true;
                 p.clients.forEach(client=> {
-                  debugger;
                   var clientId = JSON.parse(sessionStorage.getItem("id_token_claims_obj")).sub;
                   if(clientId === client["user_id"]) {
                     result = false;
                     this.clientProjects.push(p);
                   }
                 });
+                this.noClientProjects = this.isEmpty(this.clientProjects);
                 return result;
               })
-
+              this.noProjects = this.isEmpty(this.projects);
             })
             .catch(err => console.error(err));
     }
     collapse() {
         this.collapsed = !this.collapsed;
+    }
+
+    isEmpty(array: any){
+        if(array.lenght == 0){
+            return true;
+        }
+        return false;
     }
 }
 

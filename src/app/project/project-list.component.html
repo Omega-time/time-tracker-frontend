@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-11">
+    <div class="col-lg-11" *ngIf="!noProjects">
         <div class="col-lg-offset-1 col-lg-11">
             <div class="panel panel-primary">
 
@@ -35,10 +35,10 @@
                 </accordion>
             </div>
         </div>
-    </div><div class="col-lg-11">
+    </div>
+<div class="col-lg-11" *ngIf="!noClientProjects">
   <div class="col-lg-offset-1 col-lg-11">
     <div class="panel panel-primary">
-
       <div class="panel-heading">
         <h4>
           <strong>Клиентски проекти</strong>
