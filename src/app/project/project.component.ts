@@ -34,7 +34,11 @@ export class ProjectComponent implements OnInit {
             this.projectId = id;
         });
         this.projectService.getProjectById(this.projectId)
-            .then(project => this.currentProject = project)
+            .then(project => {
+            this.currentProject = project;
+                console.log(this.currentProject.clients);
+            })
             .catch(err => console.log(err));
+
     }
 }

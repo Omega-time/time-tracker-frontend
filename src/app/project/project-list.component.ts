@@ -62,6 +62,7 @@ export class ProjectListComponent implements OnInit {
               })
               this.noProjects = this.isEmpty(this.projects);
               this.loadingProjects = false;
+              console.log(this.projects[0].clients);
             })
             .catch(err => console.error(err));
     }

@@ -15,7 +15,9 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-offset-1 col-lg-11" *ngIf="loadingProjects"> <h4>Зареждане на проектите...</h4> </div>
+    <div class="col-lg-offset-1 col-lg-11" *ngIf="loadingProjects">
+        <h4>Зареждане на проектите...</h4>
+    </div>
     <div *ngIf="!loadingProjects">
         <div class="col-lg-11" *ngIf="!noProjects">
             <div class="col-lg-offset-1 col-lg-11">
@@ -32,8 +34,10 @@
                         <span class="col-lg-offset-1">Последна промяна: <em>{{project?.dateLastChanged | date:"dd/MM/yy hh:mm"}}</em></span>
                             <p>
                                 Последна дейност: <em>{{project?.lastTaskName}}</em> </span>
-
-                                <project-button [project]="project"></project-button>
+                                
+                                <span>Клиенти:</span>
+                                    <span *ngFor="let client of project.clients" ><em>{{client?.email}} </em></span>
+                                    <project-button [project]="project"></project-button>
                         </accordion-group>
                     </accordion>
                 </div>
