@@ -25,7 +25,7 @@ export class ProjectListComponent implements OnInit {
     noClientProjects: boolean;
     collapsed = true;
     isGroupOpen = false;
-
+    loadingProjects = true;
     constructor(private projectService: ProjectService) {
     }
 
@@ -36,6 +36,7 @@ export class ProjectListComponent implements OnInit {
      */
     ngOnInit() {
         //removes the fragment from the url
+
         history.pushState("", document.title, window.location.pathname);
         this.getAllProjects();
     }
@@ -60,6 +61,7 @@ export class ProjectListComponent implements OnInit {
                 return result;
               })
               this.noProjects = this.isEmpty(this.projects);
+              this.loadingProjects = false;
             })
             .catch(err => console.error(err));
     }
@@ -67,8 +69,8 @@ export class ProjectListComponent implements OnInit {
         this.collapsed = !this.collapsed;
     }
 
-    isEmpty(array: any){
-        if(array.lenght == 0){
+    isEmpty(array: Array<any>){
+        if(array.length == 0){
             return true;
         }
         return false;
