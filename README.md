@@ -29,3 +29,17 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# PaysafeInternsTimeTracking - Docker
+
+## Generate docker images
+First of all, install docker by running the command `yum install -y docker`.
+
+Run `docker build -t local/frontend .` to build the image for the node frontend.
+
+## Running the docker container
+
+After you sucessfully created the docker image for the frontend, list the
+image we just created by typing `docker images`. Start the container by typing:
+
+`docker run -d -p 4200:4200 <Id of the container image>`
